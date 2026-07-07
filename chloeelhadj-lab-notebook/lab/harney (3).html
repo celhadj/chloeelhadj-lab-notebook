@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entry 01 &mdash; Harney &amp; Sons &mdash; Chloe El Hadj</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="nav-inner">
+    <a href="../index.html" class="brand">the lab notebook</a>
+    <button class="nav-toggle" aria-label="Toggle menu">Menu</button>
+    <nav class="links">
+      <a href="../index.html">Home</a>
+      <a href="../lab.html" class="active">Lab</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="reveal">
+    <p class="label">Entry 01 &middot; Jul 2026</p>
+    <h1>Harney &amp; Sons &mdash; Wholesale Order Routing</h1>
+    <p class="lede" style="margin-top:20px;">
+      I mapped how wholesale orders move through Harney &amp; Sons, found the one manual
+      check consuming the most operator time, and built a prototype that tests whether
+      an AI-assisted check can absorb it &mdash; without removing the human sign-off that
+      makes this a trust business in the first place.
+    </p>
+  </section>
+
+  <section class="reveal">
+    <p class="label slate">The business problem</p>
+    <hr class="rule">
+    <p>
+      Every wholesale order at Harney &amp; Sons &mdash; from a specialty grocer reordering
+      its usual case count to a hotel placing a first-time bulk order &mdash; goes through
+      the same manual verification step before it's released to fulfillment. That step
+      exists for a good reason: pricing tiers, minimums, and account-specific terms are
+      genuinely inconsistent across a wholesale book built up over decades. The problem is
+      that the check doesn't distinguish between a routine reorder and an order that
+      actually needs a person's judgment &mdash; both get the same manual treatment, which
+      means the team's attention is spent evenly across orders that don't deserve it
+      evenly.
+      <span class="needs-input">needs your input &rarr; who specifically felt this, and how often</span>
+    </p>
+  </section>
+
+  <section class="reveal">
+    <p class="label slate">The existing workflow &mdash; interactive</p>
+    <hr class="rule">
+    <p>Toggle between how the workflow runs today and how it runs with the one step changed.</p>
+
+    <figure class="diagram" data-diagram data-before-note="Every order gets the same manual check, regardless of risk." data-after-note="Routine orders clear on their own. Only flagged orders reach a person.">
+      <div class="diagram-toolbar">
+        <button class="state-btn active" data-state="before">Before</button>
+        <button class="state-btn" data-state="after">After</button>
+      </div>
+      <svg viewBox="0 0 640 160" xmlns="http://www.w3.org/2000/svg">
+        <rect x="20" y="50" width="120" height="46" fill="none" stroke="#14181C" stroke-width="1"/>
+        <text x="80" y="78" text-anchor="middle" font-family="Inter" font-size="12" fill="#14181C">Order in</text>
+
+        <line x1="140" y1="73" x2="176" y2="73" stroke="#14181C" stroke-width="1"/>
+        <polygon points="176,68 186,73 176,78" fill="#14181C"/>
+
+        <rect class="diagram-step" data-highlight="true" x="188" y="50" width="120" height="46" fill="none" stroke="#14181C" stroke-width="1.4"/>
+        <text class="diagram-step" data-label-before="Manual check" data-label-after="AI-assisted check" x="248" y="78" text-anchor="middle" font-family="Inter" font-size="12" fill="#14181C">Manual check</text>
+
+        <line x1="308" y1="73" x2="344" y2="73" stroke="#14181C" stroke-width="1"/>
+        <polygon points="344,68 354,73 344,78" fill="#14181C"/>
+
+        <rect x="356" y="50" width="120" height="46" fill="none" stroke="#14181C" stroke-width="1"/>
+        <text x="416" y="78" text-anchor="middle" font-family="Inter" font-size="12" fill="#14181C">Route to team</text>
+
+        <line x1="476" y1="73" x2="512" y2="73" stroke="#14181C" stroke-width="1"/>
+        <polygon points="512,68 522,73 512,78" fill="#14181C"/>
+
+        <rect x="524" y="50" width="96" height="46" fill="none" stroke="#14181C" stroke-width="1"/>
+        <text x="572" y="78" text-anchor="middle" font-family="Inter" font-size="12" fill="#14181C">Confirmed</text>
+      </svg>
+      <div class="step-note">Every order gets the same manual check, regardless of risk.</div>
+      <figcaption class="frame-caption">Click Before / After &mdash; the highlighted step is the only one that changes.</figcaption>
+    </figure>
+  </section>
+
+  <section class="reveal">
+    <p class="label slate">The AI opportunity &mdash; and where it stops</p>
+    <hr class="rule">
+    <p>
+      The opportunity is narrow on purpose: a model that reads an incoming order against
+      account history and flags only the ones that deviate from that account's normal
+      pattern &mdash; new SKU, unusual volume, a price that doesn't match the standing
+      agreement. Everything that matches the pattern clears without a person touching it.
+    </p>
+    <p>
+      What doesn't change: any order the model flags still goes to a person, and the
+      person still has final say on anything involving a new account or a negotiated
+      term. The judgment in this business lives in relationships built over years &mdash;
+      that's not a step to automate, it's the step the automation exists to protect time
+      for.
+    </p>
+  </section>
+
+  <section class="reveal">
+    <p class="label slate">Evidence</p>
+    <hr class="rule">
+
+    <div data-tabs>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="screenshot">Screenshot</button>
+        <button class="tab-btn" data-tab="prototype">Prototype</button>
+        <button class="tab-btn" data-tab="transcript">Transcript</button>
+        <button class="tab-btn" data-tab="notes">Field video</button>
+      </div>
+
+      <div class="tab-panel active" data-panel="screenshot">
+        <div class="artifact-frame">
+          <div class="frame-head">
+            <span>order-routing &mdash; before / after</span>
+            <div class="dot-row"><span></span><span></span><span></span></div>
+          </div>
+          <div class="frame-body">
+            <div class="frame-empty">
+              Drop a real screenshot of the order sheet or dashboard here.<br>
+              Save it as <strong>assets/screenshot-workflow.png</strong>, then replace
+              this block with:<br><br>
+              &lt;img src="assets/screenshot-workflow.png" alt="Order routing dashboard"&gt;
+            </div>
+          </div>
+          <div class="frame-caption">Ideally: one screenshot of the manual check as it happens today.</div>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="prototype">
+        <div class="artifact-frame">
+          <div class="frame-head">
+            <span>prototype &mdash; live or recorded</span>
+            <div class="dot-row"><span></span><span></span><span></span></div>
+          </div>
+          <div class="frame-body">
+            <div class="frame-empty">
+              Embed the actual prototype here &mdash; a Loom walkthrough, a GIF of it
+              running, or an &lt;iframe&gt; to a live tool. Save the file into
+              <strong>assets/</strong> and swap this block for:<br><br>
+              &lt;video src="assets/prototype-demo.mp4" controls&gt;&lt;/video&gt;
+            </div>
+          </div>
+          <div class="frame-caption">The thing itself, not a description of it.</div>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="transcript">
+        <div class="transcript">
+          <div class="frame-head">
+            <span>claude &mdash; sample, replace with your real conversation</span>
+            <div class="dot-row"><span></span><span></span><span></span></div>
+          </div>
+          <div class="transcript-body">
+            <div class="msg user">
+              <div class="who">Chloe</div>
+              <div class="bubble">Here's a spreadsheet export of 40 wholesale orders with account history. Flag any order that deviates from that account's normal pattern &mdash; new SKU, unusual volume, or a price that doesn't match their standing terms. Explain each flag in one line.</div>
+            </div>
+            <div class="msg assistant">
+              <div class="who">Claude</div>
+              <div class="bubble">I found 6 orders worth a second look. Example: Account #114 ordered 3x its typical case count of Hot Cinnamon Spice with no prior large orders on file &mdash; flagged for volume, not price. The other 34 orders match established patterns on SKU, volume, and price within their account's history.</div>
+            </div>
+            <div class="msg user">
+              <div class="who">Chloe</div>
+              <div class="bubble">Good &mdash; now write the rule as a plain checklist a non-technical ops person could apply by hand, so we can test it before wiring up anything automatic.</div>
+            </div>
+          </div>
+          <div class="frame-caption">Swap in your real prompts and real output &mdash; this is a template for the shape, not the content.</div>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="notes">
+        <div class="artifact-frame">
+          <div class="frame-head">
+            <span>field video / gif</span>
+            <div class="dot-row"><span></span><span></span><span></span></div>
+          </div>
+          <div class="frame-body">
+            <div class="frame-empty">
+              A 30&ndash;60 second screen recording of you narrating the workflow or the
+              prototype works better here than more text. Save as
+              <strong>assets/field-notes.mp4</strong> or <strong>.gif</strong>, then swap
+              this block for the matching &lt;video&gt; or &lt;img&gt; tag.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <p class="label slate">What actually happened</p>
+    <hr class="rule">
+    <p>
+      This is the section that has to be true more than any other on the page.
+      <span class="needs-input">needs your input &rarr; did it run, did anyone use it, what broke</span>
+      Write it plainly: what you expected, what the first version got wrong, whether it
+      was ever put in front of the person who owns this workflow, and what they said.
+      If it never shipped past a prototype, say that &mdash; and say what that taught you
+      about how a family business actually decides to change something.
+    </p>
+  </section>
+
+  <section class="reveal">
+    <p class="label slate">Skills this built</p>
+    <hr class="rule">
+    <div class="tags" style="font-size:13px; line-height:2;">
+      Workflow mapping &middot; Prompt design for structured extraction &middot;
+      Reading account-level data for pattern deviation &middot; Talking to
+      non-technical stakeholders about a technical change
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    &copy; 2026 Chloe El Hadj &mdash; new entries as they're finished, not on a schedule &middot;
+    <a href="../index.html">home</a> &middot; <a href="../lab.html">lab index</a>
+  </div>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>
