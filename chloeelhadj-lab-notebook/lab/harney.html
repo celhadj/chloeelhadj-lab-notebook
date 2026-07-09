@@ -24,84 +24,159 @@
 
   <section class="reveal">
     <p class="label">Entry 01 &middot; Jul 2026</p>
-    <h1>Harney &amp; Sons &mdash; Wholesale Order Routing</h1>
+    <h1>Harney &amp; Sons &mdash; Five Pipelines, One Pattern</h1>
     <p class="lede" style="margin-top:20px;">
-      I mapped how wholesale orders move through Harney &amp; Sons, found the one manual
-      check consuming the most operator time, and built a prototype that tests whether
-      an AI-assisted check can absorb it &mdash; without removing the human sign-off that
-      makes this a trust business in the first place.
+      During my internship at Harney &amp; Sons, I built five data pipelines using
+      Structify &mdash; each one turning a blind spot in the company's credit,
+      inventory, or receivables operations into a live dashboard. Real account names
+      and dollar figures stay internal. The architecture, the decisions, and what I
+      learned building them are the real evidence, and none of that needs a real
+      number to be true.
     </p>
   </section>
 
   <section class="reveal">
-    <p class="label slate">The business problem</p>
+    <p class="label slate">01 &middot; Credit memo categorization</p>
     <hr class="rule">
-    <p>
-      Every wholesale order at Harney &amp; Sons &mdash; from a specialty grocer reordering
-      its usual case count to a hotel placing a first-time bulk order &mdash; goes through
-      the same manual verification step before it's released to fulfillment. That step
-      exists for a good reason: pricing tiers, minimums, and account-specific terms are
-      genuinely inconsistent across a wholesale book built up over decades. The problem is
-      that the check doesn't distinguish between a routine reorder and an order that
-      actually needs a person's judgment &mdash; both get the same manual treatment, which
-      means the team's attention is spent evenly across orders that don't deserve it
-      evenly.
-      <span class="needs-input">needs your input &rarr; who specifically felt this, and how often</span>
-    </p>
+    <div class="card">
+      <p><strong>The problem:</strong> a large share of Harney's credit memos had no
+      structured reason code attached &mdash; just free-text comments. That meant a
+      large share of the money the company was crediting back to customers had no
+      auditable explanation behind it.</p>
+      <p><strong>What I built:</strong> a pipeline that pulled a rolling window of
+      credit memos, kept structured reason codes as the source of truth where they
+      existed, and built a confidence-scored inference engine that recovered a likely
+      category from free-text notes for the undocumented ones &mdash; with a full
+      keyword audit trail so nobody had to take the inference on faith.</p>
+      <p><strong>What it found:</strong> credit exposure wasn't spread evenly across
+      customers. A small number of accounts accounted for a disproportionate share of
+      total credits issued &mdash; a real concentration-risk finding, not just a
+      data-quality footnote.</p>
+      <p><strong>What I learned:</strong> keeping "verified" and "inferred" as two
+      separate dashboards, instead of blending them into one number, mattered more
+      than the accuracy of the inference itself. A confident-looking blended total
+      would have been more dangerous than an honest, lower-confidence estimate.</p>
+    </div>
   </section>
 
   <section class="reveal">
-    <p class="label slate">The existing workflow &mdash; interactive</p>
+    <p class="label slate">02 &middot; Expired payment method outreach</p>
     <hr class="rule">
-    <p>Toggle between how the workflow runs today and how it runs with the one step changed.</p>
+    <p>This is the one with the cleanest before/after, so it's the one I diagrammed.</p>
 
-    <figure class="diagram" data-diagram data-before-note="Every order gets the same manual check, regardless of risk." data-after-note="Routine orders clear on their own. Only flagged orders reach a person.">
+    <figure class="diagram" data-diagram data-before-note="Every flagged account gets the same alert, regardless of whether it still buys anything." data-after-note="Only active, repeat accounts get outreach — drafted, then held for a person to approve.">
       <div class="diagram-toolbar">
         <button class="state-btn active" data-state="before">Before</button>
         <button class="state-btn" data-state="after">After</button>
       </div>
       <svg viewBox="0 0 640 160" xmlns="http://www.w3.org/2000/svg">
-        <rect x="20" y="50" width="120" height="46" fill="none" stroke="#14181C" stroke-width="1"/>
-        <text x="80" y="78" text-anchor="middle" font-family="Inter" font-size="12" fill="#14181C">Order in</text>
+        <rect x="20" y="50" width="130" height="46" fill="none" stroke="#14181C" stroke-width="1"/>
+        <text x="85" y="78" text-anchor="middle" font-family="Inter" font-size="12" fill="#14181C">Card flagged</text>
 
-        <line x1="140" y1="73" x2="176" y2="73" stroke="#14181C" stroke-width="1"/>
-        <polygon points="176,68 186,73 176,78" fill="#14181C"/>
+        <line x1="150" y1="73" x2="184" y2="73" stroke="#14181C" stroke-width="1"/>
+        <polygon points="184,68 194,73 184,78" fill="#14181C"/>
 
-        <rect class="diagram-step" data-highlight="true" x="188" y="50" width="120" height="46" fill="none" stroke="#14181C" stroke-width="1.4"/>
-        <text class="diagram-step" data-label-before="Manual check" data-label-after="AI-assisted check" x="248" y="78" text-anchor="middle" font-family="Inter" font-size="12" fill="#14181C">Manual check</text>
+        <rect class="diagram-step" data-highlight="true" x="196" y="50" width="130" height="46" fill="none" stroke="#14181C" stroke-width="1.4"/>
+        <text class="diagram-step" data-label-before="Alert everyone" data-label-after="Filter to active accounts" x="261" y="78" text-anchor="middle" font-family="Inter" font-size="11.5" fill="#14181C">Alert everyone</text>
 
-        <line x1="308" y1="73" x2="344" y2="73" stroke="#14181C" stroke-width="1"/>
-        <polygon points="344,68 354,73 344,78" fill="#14181C"/>
+        <line x1="326" y1="73" x2="360" y2="73" stroke="#14181C" stroke-width="1"/>
+        <polygon points="360,68 370,73 360,78" fill="#14181C"/>
 
-        <rect x="356" y="50" width="120" height="46" fill="none" stroke="#14181C" stroke-width="1"/>
-        <text x="416" y="78" text-anchor="middle" font-family="Inter" font-size="12" fill="#14181C">Route to team</text>
+        <rect x="372" y="50" width="130" height="46" fill="none" stroke="#14181C" stroke-width="1"/>
+        <text x="437" y="78" text-anchor="middle" font-family="Inter" font-size="12" fill="#14181C">Draft outreach</text>
 
-        <line x1="476" y1="73" x2="512" y2="73" stroke="#14181C" stroke-width="1"/>
-        <polygon points="512,68 522,73 512,78" fill="#14181C"/>
+        <line x1="502" y1="73" x2="536" y2="73" stroke="#14181C" stroke-width="1"/>
+        <polygon points="536,68 546,73 536,78" fill="#14181C"/>
 
-        <rect x="524" y="50" width="96" height="46" fill="none" stroke="#14181C" stroke-width="1"/>
-        <text x="572" y="78" text-anchor="middle" font-family="Inter" font-size="12" fill="#14181C">Confirmed</text>
+        <rect x="548" y="50" width="72" height="46" fill="none" stroke="#14181C" stroke-width="1"/>
+        <text x="584" y="72" text-anchor="middle" font-family="Inter" font-size="10.5" fill="#14181C">Human</text>
+        <text x="584" y="86" text-anchor="middle" font-family="Inter" font-size="10.5" fill="#14181C">approves</text>
       </svg>
-      <div class="step-note">Every order gets the same manual check, regardless of risk.</div>
-      <figcaption class="frame-caption">Click Before / After &mdash; the highlighted step is the only one that changes.</figcaption>
+      <div class="step-note">Every flagged account gets the same alert, regardless of whether it still buys anything.</div>
+      <figcaption class="frame-caption">Click Before / After &mdash; the filtering step is the only thing that changes.</figcaption>
     </figure>
+
+    <div class="card" style="margin-top:18px;">
+      <p><strong>The problem:</strong> accounts with expired or incomplete card
+      information sat unnoticed until an order actually failed. The instinct once
+      someone did notice was "alert everyone flagged" &mdash; regardless of whether
+      the account still ordered anything.</p>
+      <p><strong>What I built:</strong> a pipeline that filtered flagged accounts down
+      to active, repeat customers, drafted outreach tailored to who needed to see it
+      (sales rep, customer, or accounts receivable), and posted every draft to an internal review channel for human approval before anything went out.</p>
+      <p><strong>What I learned:</strong> the real design decision wasn't the
+      extraction, it was the filter &mdash; a smaller, correctly-targeted list beat a
+      longer, noisier one. I also learned mid-build that sales reps don't have direct
+      system access, which changed who the emails actually needed to be addressed to.</p>
+    </div>
   </section>
 
   <section class="reveal">
-    <p class="label slate">The AI opportunity &mdash; and where it stops</p>
+    <p class="label slate">03 &middot; Inventory stock-out detection &amp; forecasting</p>
+    <hr class="rule">
+    <div class="card">
+      <p><strong>The problem:</strong> when a product line went out of stock, nobody
+      could quickly tell whether it was a packaging shortage or an ingredient
+      shortage &mdash; so every investigation started from zero.</p>
+      <p><strong>What I built:</strong> a pipeline that classified every stock-out by
+      root cause, forecasted risk across short-, medium-, and longer-term windows, and
+      ranked what needed reordering by urgency.</p>
+      <p><strong>What it found:</strong> stock-outs didn't just pause demand
+      temporarily. Orders for the affected product nearly disappeared entirely during
+      the gap, rather than customers waiting it out &mdash; which reframes a stock-out
+      from an inventory inconvenience into a direct revenue event.</p>
+      <p><strong>What I learned:</strong> monthly averages hid the real risk. A small
+      number of very large, coordinated orders from a handful of major accounts
+      created demand spikes many times the daily average &mdash; and that's what
+      actually broke inventory planning, not gradual demand growth.</p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <p class="label slate">04 &middot; Accounts receivable health dashboard</p>
+    <hr class="rule">
+    <div class="card">
+      <p><strong>The problem:</strong> collections prioritization was manual and
+      reactive. Nobody had a single ranked view of which overdue accounts actually
+      mattered most.</p>
+      <p><strong>What I built:</strong> a pipeline that aged every outstanding
+      invoice, aggregated by customer, flagged the accounts driving a disproportionate
+      share of total receivables, and produced one composite priority score per
+      account blending size, age, and payment-history patterns.</p>
+      <p><strong>What it found:</strong> a very small number of accounts represented a
+      large majority of total outstanding receivables &mdash; a concentration risk
+      worth surfacing to leadership on its own, independent of any single overdue
+      invoice.</p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <p class="label slate">05 &middot; Executive consolidation dashboard</p>
+    <hr class="rule">
+    <div class="card">
+      <p><strong>The problem:</strong> leadership had no single live view spanning
+      credit risk, inventory health, sales, and payment compliance &mdash; each lived
+      in a different report, updated on a different schedule.</p>
+      <p><strong>What I built:</strong> a real-time dashboard pulling live data across
+      all four areas at once.</p>
+      <p><strong>What I learned:</strong> partway through, one data facet turned out
+      to be unreliable. Shipping four dependable views instead of five including one
+      broken one was itself a real product decision, not just a technical fallback
+      &mdash; a smaller, trustworthy dashboard beats a comprehensive, unreliable one.</p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <p class="label slate">The pattern across all five</p>
     <hr class="rule">
     <p>
-      The opportunity is narrow on purpose: a model that reads an incoming order against
-      account history and flags only the ones that deviate from that account's normal
-      pattern &mdash; new SKU, unusual volume, a price that doesn't match the standing
-      agreement. Everything that matches the pattern clears without a person touching it.
-    </p>
-    <p>
-      What doesn't change: any order the model flags still goes to a person, and the
-      person still has final say on anything involving a new account or a negotiated
-      term. The judgment in this business lives in relationships built over years &mdash;
-      that's not a step to automate, it's the step the automation exists to protect time
-      for.
+      None of these were hard because the data extraction was hard. Structify made
+      pulling the data the easy part. Every one of these projects came down to the
+      same three judgment calls: what to trust versus what to infer, what to filter
+      out versus surface, and who specifically should see the result before anything
+      became automatic. That's the actual skill this internship built &mdash; not a
+      tool, a habit of asking those three questions before writing a single line of a
+      pipeline.
     </p>
   </section>
 
@@ -111,45 +186,46 @@
 
     <div data-tabs>
       <div class="tabs">
-        <button class="tab-btn active" data-tab="screenshot">Screenshot</button>
-        <button class="tab-btn" data-tab="prototype">Prototype</button>
+        <button class="tab-btn active" data-tab="screenshot">Dashboard</button>
+        <button class="tab-btn" data-tab="prototype">Pipeline</button>
         <button class="tab-btn" data-tab="transcript">Transcript</button>
-        <button class="tab-btn" data-tab="notes">Field video</button>
       </div>
 
       <div class="tab-panel active" data-panel="screenshot">
         <div class="artifact-frame">
           <div class="frame-head">
-            <span>order-routing &mdash; before / after</span>
+            <span>dashboard &mdash; recreated with sample data</span>
             <div class="dot-row"><span></span><span></span><span></span></div>
           </div>
           <div class="frame-body">
             <div class="frame-empty">
-              Drop a real screenshot of the order sheet or dashboard here.<br>
-              Save it as <strong>assets/screenshot-workflow.png</strong>, then replace
-              this block with:<br><br>
-              &lt;img src="assets/screenshot-workflow.png" alt="Order routing dashboard"&gt;
+              Real dashboards ran on live Harney data and can't be posted as-is.
+              Recreate one view (e.g. the reorder-priority table or the OOS
+              severity chart) with invented sample numbers that preserve the
+              structure, save as <strong>assets/dashboard-mockup.png</strong>, and
+              swap this block for:<br><br>
+              &lt;img src="assets/dashboard-mockup.png" alt="Reorder priority dashboard, recreated with sample data"&gt;
             </div>
           </div>
-          <div class="frame-caption">Ideally: one screenshot of the manual check as it happens today.</div>
+          <div class="frame-caption">Recreated to protect confidential company data &mdash; structure is real, numbers are not.</div>
         </div>
       </div>
 
       <div class="tab-panel" data-panel="prototype">
         <div class="artifact-frame">
           <div class="frame-head">
-            <span>prototype &mdash; live or recorded</span>
+            <span>pipeline architecture</span>
             <div class="dot-row"><span></span><span></span><span></span></div>
           </div>
           <div class="frame-body">
             <div class="frame-empty">
-              Embed the actual prototype here &mdash; a Loom walkthrough, a GIF of it
-              running, or an &lt;iframe&gt; to a live tool. Save the file into
-              <strong>assets/</strong> and swap this block for:<br><br>
-              &lt;video src="assets/prototype-demo.mp4" controls&gt;&lt;/video&gt;
+              A screen recording or diagram of one pipeline's node structure
+              (extractors &rarr; transformers &rarr; dashboard) works well here,
+              since architecture isn't sensitive the way live data is. Save as
+              <strong>assets/pipeline-architecture.png</strong> and swap for:<br><br>
+              &lt;img src="assets/pipeline-architecture.png" alt="Structify pipeline node architecture"&gt;
             </div>
           </div>
-          <div class="frame-caption">The thing itself, not a description of it.</div>
         </div>
       </div>
 
@@ -162,60 +238,31 @@
           <div class="transcript-body">
             <div class="msg user">
               <div class="who">Chloe</div>
-              <div class="bubble">Here's a spreadsheet export of 40 wholesale orders with account history. Flag any order that deviates from that account's normal pattern &mdash; new SKU, unusual volume, or a price that doesn't match their standing terms. Explain each flag in one line.</div>
+              <div class="bubble">About half of these credit memos have no structured reason code, just free-text comments. Can you infer a likely category from the comment text, and flag your confidence level for each one?</div>
             </div>
             <div class="msg assistant">
               <div class="who">Claude</div>
-              <div class="bubble">I found 6 orders worth a second look. Example: Account #114 ordered 3x its typical case count of Hot Cinnamon Spice with no prior large orders on file &mdash; flagged for volume, not price. The other 34 orders match established patterns on SKU, volume, and price within their account's history.</div>
+              <div class="bubble">I can infer categories using keyword matching against your existing reason codes. I'd flag confidence as High/Medium/Low based on keyword strength, and I'd keep these separate from your structured-code totals rather than blending them — otherwise an inferred credit looks as certain as a documented one.</div>
             </div>
             <div class="msg user">
               <div class="who">Chloe</div>
-              <div class="bubble">Good &mdash; now write the rule as a plain checklist a non-technical ops person could apply by hand, so we can test it before wiring up anything automatic.</div>
+              <div class="bubble">Agreed — build it as two dashboards, not one. Show me the keyword audit trail for anything inferred so it's not a black box.</div>
             </div>
           </div>
-          <div class="frame-caption">Swap in your real prompts and real output &mdash; this is a template for the shape, not the content.</div>
-        </div>
-      </div>
-
-      <div class="tab-panel" data-panel="notes">
-        <div class="artifact-frame">
-          <div class="frame-head">
-            <span>field video / gif</span>
-            <div class="dot-row"><span></span><span></span><span></span></div>
-          </div>
-          <div class="frame-body">
-            <div class="frame-empty">
-              A 30&ndash;60 second screen recording of you narrating the workflow or the
-              prototype works better here than more text. Save as
-              <strong>assets/field-notes.mp4</strong> or <strong>.gif</strong>, then swap
-              this block for the matching &lt;video&gt; or &lt;img&gt; tag.
-            </div>
-          </div>
+          <div class="frame-caption">Swap in your real prompts and real output — this is a template for the shape, not the content.</div>
         </div>
       </div>
     </div>
   </section>
 
   <section class="reveal">
-    <p class="label slate">What actually happened</p>
-    <hr class="rule">
-    <p>
-      This is the section that has to be true more than any other on the page.
-      <span class="needs-input">needs your input &rarr; did it run, did anyone use it, what broke</span>
-      Write it plainly: what you expected, what the first version got wrong, whether it
-      was ever put in front of the person who owns this workflow, and what they said.
-      If it never shipped past a prototype, say that &mdash; and say what that taught you
-      about how a family business actually decides to change something.
-    </p>
-  </section>
-
-  <section class="reveal">
     <p class="label slate">Skills this built</p>
     <hr class="rule">
     <div class="tags" style="font-size:13px; line-height:2;">
-      Workflow mapping &middot; Prompt design for structured extraction &middot;
-      Reading account-level data for pattern deviation &middot; Talking to
-      non-technical stakeholders about a technical change
+      Structify pipeline design &middot; Confidence-scored inference over
+      unstructured text &middot; ERP data extraction &middot; Root-cause
+      classification &middot; Designing human-approval gates into automation
+      &middot; Deciding what NOT to automate
     </div>
   </section>
 
