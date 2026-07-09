@@ -3,8 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Entry 01 </title>
+<title>Entry 01</title>
 <link rel="stylesheet" href="../styles.css">
+<style>
+  /* Scoped styles for the Artifacts checklist — move into styles.css if you'd rather keep one shared file */
+  .artifact-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .artifact-item {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+  }
+  .artifact-item .checkbox {
+    font-size: 15px;
+  }
+  .artifact-item em {
+    font-style: italic;
+    opacity: 0.6;
+  }
+</style>
 </head>
 <body>
 
@@ -24,7 +46,7 @@
 
   <section class="reveal">
     <p class="label">Entry 01 &middot; Jul 2026</p>
-    <h1>Case Study No. 1: AI for Business Operations</h1>
+    <h1>Case Study 01 &mdash; AI Implementation in Consumer Goods</h1>
     <p class="lede" style="margin-top:20px;">
       During a summer internship at a family-owned manufacturing company, I designed five AI-enabled pipelines
       to address operational challenges across accounting, inventory, and finance. This case study focuses on 
@@ -184,54 +206,54 @@
 
     <div data-tabs>
       <div class="tabs">
-        <button class="tab-btn active" data-tab="screenshot">Dashboard</button>
-        <button class="tab-btn" data-tab="prototype">Pipeline</button>
-        <button class="tab-btn" data-tab="transcript">Transcript</button>
+        <button class="tab-btn active" data-tab="overview">Overview</button>
+        <button class="tab-btn" data-tab="workflow">Workflow</button>
+        <button class="tab-btn" data-tab="artifacts">Artifacts</button>
       </div>
 
-      <div class="tab-panel active" data-panel="screenshot">
-
-     <div class="tab-panel" data-panel="prototype">
-
-  <div class="artifact-frame">
-
-    <div class="frame-head">
-      ...
-    </div>
-
-    <div class="frame-body">
-      <div class="frame-empty">
-              This architecture diagram illustrates the flow of information through the pipeline. 
-              It represents the production design while omitting implementation details specific to the organization. 
-     </div>
-    </div>
-
-  </div>
-
-</div>
-              
-      <div class="tab-panel" data-panel="transcript">
-        <div class="transcript">
-          <div class="frame-head">
-            <span>AI Assistant &mdash; AI Assistant</span>
-            <div class="dot-row"><span></span><span></span><span></span></div>
-          </div>
-          <div class="transcript-body">
-            <div class="msg user">
-              <div class="who">Chloe</div>
-              <div class="bubble">Many records are missing structured categorization and only include free-text notes. Can we infer likely categories while clearly distinguishing inferred results from verified ones?</div>
-            </div>
-            <div class="msg assistant">
-              <div class="who">AI Assistant</div>
-              <div class="bubble">Yes. We can generate inferred categories using keyword matching or similarity while assigning confidence scores and keeping inferred records separate from verified data.</div>
-            </div>
-            <div class="msg user">
-              <div class="who">Chloe</div>
-              <div class="bubble">Agreed — build it as two dashboards, not one. Show me the keyword audit trail for anything inferred so it's not a black box.</div>
-            </div>
-          </div>
-          <div class="frame-caption">Swap in your real prompts and real output — this is a template for the shape, not the content.</div>
+      <div class="tab-panel active" data-panel="overview">
+        <div class="card">
+          <p>Five AI-enabled pipelines built during a summer internship at a
+          family-owned manufacturing company, addressing recurring gaps in
+          accounting, inventory, and finance operations. Each project started
+          from a real operational blind spot &mdash; missing data, manual
+          prioritization, siloed reporting &mdash; rather than a predetermined
+          AI use case. The common thread across all five: deciding what to
+          trust, what to infer, and who needed to see the result before
+          anything became automatic.</p>
         </div>
+      </div>
+
+      <div class="tab-panel" data-panel="workflow">
+        <div class="card">
+          <p>The clearest before/after example &mdash; filtering flagged
+          accounts down to active, repeat entities before drafting outreach
+          &mdash; is diagrammed above in Project 02. The same underlying
+          shift shows up across all five projects: moving from "flag or
+          report everything" to "surface only what's active, concentrated,
+          or high-risk, then route it to a person before it goes out."</p>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="artifacts">
+        <div class="artifact-checklist">
+          <div class="artifact-item">
+            <span class="checkbox">&#9744;</span>
+            <span>Executive summary <em>(coming soon)</em></span>
+          </div>
+          <div class="artifact-item">
+            <span class="checkbox">&#9744;</span>
+            <span>Dashboard mockups <em>(coming soon)</em></span>
+          </div>
+          <div class="artifact-item">
+            <span class="checkbox">&#9744;</span>
+            <span>Pipeline diagrams <em>(coming soon)</em></span>
+          </div>
+        </div>
+        <p class="frame-caption" style="margin-top:14px;">
+          Real artifacts go here once dashboards and pipeline diagrams are
+          rebuilt anonymized &mdash; not recreated from the original screenshots.
+        </p>
       </div>
     </div>
   </section>
