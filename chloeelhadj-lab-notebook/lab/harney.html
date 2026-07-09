@@ -26,10 +26,9 @@
     <p class="label">Entry 01 &middot; Jul 2026</p>
     <h1>Case Study No. 1: AI for Business Operations</h1>
     <p class="lede" style="margin-top:20px;">
-      During a summer internship at an enterprise organization, I designed five AI-enabled pipelines
-      that transformed operational blind spots into decision-support tools. This case study focuses on the 
-      design decisions. This case study focuses on the reasoning behind each system: the business problem, the 
-      decisions, and what I learned building them are the evidence.
+      During a summer internship at a family-owned manufacturing company, I designed five AI-enabled pipelines
+      to address operational challenges across accounting, inventory, and finance. This case study focuses on 
+      the reasoning behind each project: the business problem, the approach, and what I learned in the process.
       This case study and all of its examples have been anonymized to protect operational data and internal 
       business processes. All examples reflect the original technological architecture and design decisions while 
       omitting identifying information. 
@@ -37,30 +36,30 @@
   </section>
 
   <section class="reveal">
-    <p class="label slate">01 &middot; Credit memo categorization</p>
+    <p class="label slate">01 &middot; Recovering Missing Credit Memo Categories</p>
     <hr class="rule">
     <div class="card">
       <p><strong>The problem:</strong> a large share of the organization's credit 
         memos had no structured reason code attached &mdash; just free-text comments. 
         That meant a large share of the money the organization was crediting back to 
         the accounts had no auditable explanation behind it.</p>
-      <p><strong>What I built:</strong> a pipeline that pulled a rolling window of
+      <p><strong>What I built:</strong> an AI prototype that pulled a rolling window of
       credit memos, kept structured reason codes as the source of truth, where they
-      existed, and built a confidence-scored inference engine that recovered a likely
+      existed, and built a confidence-scored tab that recovered a likely
       category from free-text notes for the undocumented ones &mdash; with a full
-      keyword audit trail so nobody had to take the inference on faith.</p>
+      keyword audit trail so nobody had to take the assumption on faith.</p>
       <p><strong>Key insight:</strong> The analysis demonstrated that operational
         issues were highly concentrated rather than evenly distributed, reinforcing 
         the value of prioritization over blanket reporting.</p>
       <p><strong>What I learned:</strong> keeping "verified" and "inferred" as two
       separate dashboards, instead of blending them into one number, mattered more
-      than the accuracy of the inference itself. A confident-looking blended total
+      than the accuracy of the estimation itself. A confident-looking blended total
       would have been more dangerous than an honest, lower-confidence estimate.</p>
     </div>
   </section>
 
   <section class="reveal">
-    <p class="label slate">02 &middot; Expired payment method outreach</p>
+    <p class="label slate">02 &middot; Prioritizing Expired Payment Methods</p>
     <hr class="rule">
     <p>This is the one with the cleanest before/after, so it's the one I diagrammed.</p>
 
@@ -101,7 +100,7 @@
       information sat unnoticed until an order actually failed. The instinct once
       someone did notice was "alert everyone flagged" &mdash; regardless of whether
       the account still ordered anything.</p>
-      <p><strong>What I built:</strong> a pipeline that filtered flagged accounts down
+      <p><strong>What I built:</strong> an AI tool that filtered flagged accounts down
       to active, repeat accounts, drafted outreach tailored to who needed to see it
       (relationship manager, account, or finance team), and posted every draft to an internal review channel for human approval before anything went out.</p>
       <p><strong>What I learned:</strong> the real design decision wasn't the
@@ -112,7 +111,7 @@
   </section>
 
   <section class="reveal">
-    <p class="label slate">03 &middot; Inventory stock-out detection &amp; forecasting</p>
+    <p class="label slate">03 &middot; Understanding Inventory Stockouts</p>
     <hr class="rule">
     <div class="card">
       <p><strong>The problem:</strong> when a product family went out of stock, nobody
@@ -133,13 +132,13 @@
   </section>
 
   <section class="reveal">
-    <p class="label slate">04 &middot; finance team health dashboard</p>
+    <p class="label slate">04 &middot; Finance Operations Dashboard</p>
     <hr class="rule">
     <div class="card">
       <p><strong>The problem:</strong> collections prioritization was manual and
       reactive. Nobody had a single ranked view of which overdue operational records
         actually mattered most.</p>
-      <p><strong>What I built:</strong> a pipeline that aged every outstanding
+      <p><strong>What I built:</strong> an AI workflow that aged every outstanding
       invoice, aggregated by accounts, flagged the accounts driving a disproportionate
       share of total receivables, and produced one composite priority score per
       account blending size, age, and payment-history patterns.</p>
@@ -150,13 +149,13 @@
   </section>
 
   <section class="reveal">
-    <p class="label slate">05 &middot; Executive consolidation dashboard</p>
+    <p class="label slate">05 &middot; Executive Operations Dashboard</p>
     <hr class="rule">
     <div class="card">
       <p><strong>The problem:</strong> leadership had no single live view spanning
       finance, operations, inventory, commercial performance&mdash; 
       each lived in a different report, updated on a different schedule.</p>
-      <p><strong>What I built:</strong> a real-time dashboard pulling live data across
+      <p><strong>What I built:</strong> a dashboard pulling live data across
       all four areas at once.</p>
       <p><strong>What I learned:</strong> partway through, one data facet turned out
       to be unreliable. Shipping four dependable views instead of five including one
@@ -191,32 +190,25 @@
       </div>
 
       <div class="tab-panel active" data-panel="screenshot">
-        <div class="artifact-frame">
-          <div class="frame-head">
-            <span>dashboard &mdash; recreated with sample data</span>
-            <div class="dot-row"><span></span><span></span><span></span></div>
-          </div>
-          <div class="frame-body">
-            <div class="frame-empty">
-              Real dashboards ran on live organization data and can't be posted as-is.
-              This dashboard mockup recreates the structure of the original
-              dashboard using manufactured data. The layout, workflow, and metrics reflect the
-              production design, while all values have been replaced.
-     </div>
-  </section>
 
-      <div class="tab-panel" data-panel="prototype">
-        <div class="artifact-frame">
-          <div class="frame-head">
-            <span>pipeline architecture</span>
-            <div class="dot-row"><span></span><span></span><span></span></div>
-          </div>
-          <div class="frame-body">
-            <div class="frame-empty">
+     <div class="tab-panel" data-panel="prototype">
+
+  <div class="artifact-frame">
+
+    <div class="frame-head">
+      ...
+    </div>
+
+    <div class="frame-body">
+      <div class="frame-empty">
               This architecture diagram illustrates the flow of information through the pipeline. 
               It represents the production design while omitting implementation details specific to the organization. 
      </div>
-  </section>
+    </div>
+
+  </div>
+
+</div>
               
       <div class="tab-panel" data-panel="transcript">
         <div class="transcript">
@@ -248,9 +240,9 @@
     <p class="label slate">Skills this built</p>
     <hr class="rule">
     <div class="tags" style="font-size:13px; line-height:2;">
-      Enterprise workflow analysis &middot; Business process redesign &middot; AI-assisted decision support &middot;
-      Data pipeline architecture &middot; Human-approval gates into automation &middot; Operational dashboard design 
-      &middot; Root-cause analysis &middot; Systems thinking &middot; Deciding what NOT to automate
+      Organization workflow analysis &middot; Business operations &middot; AI implementation &middot;
+      Operational dashboards &middot; Prompt engineering &middot; Systems thinking &middot; Process 
+      redesign &middot
     </div>
   </section>
 
