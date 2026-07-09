@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Entry 01 &mdash; Harney &amp; Sons &mdash; Chloe El Hadj</title>
+<title>Entry 01 </title>
 <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -24,14 +24,15 @@
 
   <section class="reveal">
     <p class="label">Entry 01 &middot; Jul 2026</p>
-    <h1>Harney &amp; Sons &mdash; Five Pipelines, One Pattern</h1>
+    <h1>Case Study No. 1: AI for Business Operations</h1>
     <p class="lede" style="margin-top:20px;">
-      During my internship at Harney &amp; Sons, I built five data pipelines using
-      Structify &mdash; each one turning a blind spot in the company's credit,
-      inventory, or receivables operations into a live dashboard. Real account names
-      and dollar figures stay internal. The architecture, the decisions, and what I
-      learned building them are the real evidence, and none of that needs a real
-      number to be true.
+      During a summer internship at an enterprise organization, I designed five AI-enabled pipelines
+      that transformed operational blind spots into decision-support tools. This case study focuses on the 
+      design decisions. This case study focuses on the reasoning behind each system: the business problem, the 
+      decisions, and what I learned building them are the evidence.
+      This case study and all of its examples have been anonymized to protect operational data and internal 
+      business processes. All examples reflect the original technological architecture and design decisions while 
+      omitting identifying information. 
     </p>
   </section>
 
@@ -39,19 +40,18 @@
     <p class="label slate">01 &middot; Credit memo categorization</p>
     <hr class="rule">
     <div class="card">
-      <p><strong>The problem:</strong> a large share of Harney's credit memos had no
-      structured reason code attached &mdash; just free-text comments. That meant a
-      large share of the money the company was crediting back to customers had no
-      auditable explanation behind it.</p>
+      <p><strong>The problem:</strong> a large share of the organization's credit 
+        memos had no structured reason code attached &mdash; just free-text comments. 
+        That meant a large share of the money the organization was crediting back to 
+        the accounts had no auditable explanation behind it.</p>
       <p><strong>What I built:</strong> a pipeline that pulled a rolling window of
-      credit memos, kept structured reason codes as the source of truth where they
+      credit memos, kept structured reason codes as the source of truth, where they
       existed, and built a confidence-scored inference engine that recovered a likely
       category from free-text notes for the undocumented ones &mdash; with a full
       keyword audit trail so nobody had to take the inference on faith.</p>
-      <p><strong>What it found:</strong> credit exposure wasn't spread evenly across
-      customers. A small number of accounts accounted for a disproportionate share of
-      total credits issued &mdash; a real concentration-risk finding, not just a
-      data-quality footnote.</p>
+      <p><strong>Key insight:</strong> The analysis demonstrated that operational
+        issues were highly concentrated rather than evenly distributed, reinforcing 
+        the value of prioritization over blanket reporting.</p>
       <p><strong>What I learned:</strong> keeping "verified" and "inferred" as two
       separate dashboards, instead of blending them into one number, mattered more
       than the accuracy of the inference itself. A confident-looking blended total
@@ -64,7 +64,7 @@
     <hr class="rule">
     <p>This is the one with the cleanest before/after, so it's the one I diagrammed.</p>
 
-    <figure class="diagram" data-diagram data-before-note="Every flagged account gets the same alert, regardless of whether it still buys anything." data-after-note="Only active, repeat accounts get outreach — drafted, then held for a person to approve.">
+    <figure class="diagram" data-diagram data-before-note="Every flagged account gets the same alert, regardless of whether it still buys anything." data-after-note="Only active, repeat entities get outreach — drafted, then held for a person to approve.">
       <div class="diagram-toolbar">
         <button class="state-btn active" data-state="before">Before</button>
         <button class="state-btn" data-state="after">After</button>
@@ -97,17 +97,17 @@
     </figure>
 
     <div class="card" style="margin-top:18px;">
-      <p><strong>The problem:</strong> accounts with expired or incomplete card
+      <p><strong>The problem:</strong> entities with expired or incomplete card
       information sat unnoticed until an order actually failed. The instinct once
       someone did notice was "alert everyone flagged" &mdash; regardless of whether
       the account still ordered anything.</p>
       <p><strong>What I built:</strong> a pipeline that filtered flagged accounts down
-      to active, repeat customers, drafted outreach tailored to who needed to see it
-      (sales rep, customer, or accounts receivable), and posted every draft to an internal review channel for human approval before anything went out.</p>
+      to active, repeat accounts, drafted outreach tailored to who needed to see it
+      (relationship manager, account, or finance team), and posted every draft to an internal review channel for human approval before anything went out.</p>
       <p><strong>What I learned:</strong> the real design decision wasn't the
       extraction, it was the filter &mdash; a smaller, correctly-targeted list beat a
-      longer, noisier one. I also learned mid-build that sales reps don't have direct
-      system access, which changed who the emails actually needed to be addressed to.</p>
+      longer, noisier one. I also learned mid-build that relationship manager didn't have 
+      direct system access, which changed who the emails actually needed to be addressed to.</p>
     </div>
   </section>
 
@@ -115,38 +115,37 @@
     <p class="label slate">03 &middot; Inventory stock-out detection &amp; forecasting</p>
     <hr class="rule">
     <div class="card">
-      <p><strong>The problem:</strong> when a product line went out of stock, nobody
-      could quickly tell whether it was a packaging shortage or an ingredient
+      <p><strong>The problem:</strong> when a product family went out of stock, nobody
+      could quickly tell whether it was a packaging shortage or a component
       shortage &mdash; so every investigation started from zero.</p>
       <p><strong>What I built:</strong> a pipeline that classified every stock-out by
       root cause, forecasted risk across short-, medium-, and longer-term windows, and
       ranked what needed reordering by urgency.</p>
-      <p><strong>What it found:</strong> stock-outs didn't just pause demand
-      temporarily. Orders for the affected product nearly disappeared entirely during
-      the gap, rather than customers waiting it out &mdash; which reframes a stock-out
-      from an inventory inconvenience into a direct revenue event.</p>
+      <p><strong>Key insight:</strong> stock-outs didn't just pause demand
+      temporarily. The analysis illustrated how stock-outs can suppress demand 
+        rather than simply delaying it, reinforcing the importance of proactive
+        inventory planning.</p>
       <p><strong>What I learned:</strong> monthly averages hid the real risk. A small
-      number of very large, coordinated orders from a handful of major accounts
+      number of very large, coordinated orders from a handful of major customer records
       created demand spikes many times the daily average &mdash; and that's what
       actually broke inventory planning, not gradual demand growth.</p>
     </div>
   </section>
 
   <section class="reveal">
-    <p class="label slate">04 &middot; Accounts receivable health dashboard</p>
+    <p class="label slate">04 &middot; finance team health dashboard</p>
     <hr class="rule">
     <div class="card">
       <p><strong>The problem:</strong> collections prioritization was manual and
-      reactive. Nobody had a single ranked view of which overdue accounts actually
-      mattered most.</p>
+      reactive. Nobody had a single ranked view of which overdue operational records
+        actually mattered most.</p>
       <p><strong>What I built:</strong> a pipeline that aged every outstanding
-      invoice, aggregated by customer, flagged the accounts driving a disproportionate
+      invoice, aggregated by accounts, flagged the accounts driving a disproportionate
       share of total receivables, and produced one composite priority score per
       account blending size, age, and payment-history patterns.</p>
-      <p><strong>What it found:</strong> a very small number of accounts represented a
-      large majority of total outstanding receivables &mdash; a concentration risk
-      worth surfacing to leadership on its own, independent of any single overdue
-      invoice.</p>
+      <p><strong>Key insight:</strong> The dashboard highlighted how concentration
+        analysis can reveal risks that are difficult to identify when reviewing individual
+        invoices in isolation.</p>
     </div>
   </section>
 
@@ -155,8 +154,8 @@
     <hr class="rule">
     <div class="card">
       <p><strong>The problem:</strong> leadership had no single live view spanning
-      credit risk, inventory health, sales, and payment compliance &mdash; each lived
-      in a different report, updated on a different schedule.</p>
+      finance, operations, inventory, commercial performance&mdash; 
+      each lived in a different report, updated on a different schedule.</p>
       <p><strong>What I built:</strong> a real-time dashboard pulling live data across
       all four areas at once.</p>
       <p><strong>What I learned:</strong> partway through, one data facet turned out
@@ -170,13 +169,13 @@
     <p class="label slate">The pattern across all five</p>
     <hr class="rule">
     <p>
-      None of these were hard because the data extraction was hard. Structify made
+      None of these were hard because the data extraction was hard. AI made
       pulling the data the easy part. Every one of these projects came down to the
       same three judgment calls: what to trust versus what to infer, what to filter
       out versus surface, and who specifically should see the result before anything
-      became automatic. That's the actual skill this internship built &mdash; not a
-      tool, a habit of asking those three questions before writing a single line of a
-      pipeline.
+      became automatic. That became the real lesson of the project. Building pipelines
+      was only part of the work. The harder challenge was deciding what to trust, infer,
+      filter, and where human judgment should remain part of the process.
     </p>
   </section>
 
@@ -199,17 +198,12 @@
           </div>
           <div class="frame-body">
             <div class="frame-empty">
-              Real dashboards ran on live Harney data and can't be posted as-is.
-              Recreate one view (e.g. the reorder-priority table or the OOS
-              severity chart) with invented sample numbers that preserve the
-              structure, save as <strong>assets/dashboard-mockup.png</strong>, and
-              swap this block for:<br><br>
-              &lt;img src="assets/dashboard-mockup.png" alt="Reorder priority dashboard, recreated with sample data"&gt;
-            </div>
-          </div>
-          <div class="frame-caption">Recreated to protect confidential company data &mdash; structure is real, numbers are not.</div>
-        </div>
-      </div>
+              Real dashboards ran on live organization data and can't be posted as-is.
+              This dashboard mockup recreates the structure of the original
+              dashboard using manufactured data. The layout, workflow, and metrics reflect the
+              production design, while all values have been replaced.
+     </div>
+  </section>
 
       <div class="tab-panel" data-panel="prototype">
         <div class="artifact-frame">
@@ -219,30 +213,25 @@
           </div>
           <div class="frame-body">
             <div class="frame-empty">
-              A screen recording or diagram of one pipeline's node structure
-              (extractors &rarr; transformers &rarr; dashboard) works well here,
-              since architecture isn't sensitive the way live data is. Save as
-              <strong>assets/pipeline-architecture.png</strong> and swap for:<br><br>
-              &lt;img src="assets/pipeline-architecture.png" alt="Structify pipeline node architecture"&gt;
-            </div>
-          </div>
-        </div>
-      </div>
-
+              This architecture diagram illustrates the flow of information through the pipeline. 
+              It represents the production design while omitting implementation details specific to the organization. 
+     </div>
+  </section>
+              
       <div class="tab-panel" data-panel="transcript">
         <div class="transcript">
           <div class="frame-head">
-            <span>claude &mdash; sample, replace with your real conversation</span>
+            <span>AI Assistant &mdash; AI Assistant</span>
             <div class="dot-row"><span></span><span></span><span></span></div>
           </div>
           <div class="transcript-body">
             <div class="msg user">
               <div class="who">Chloe</div>
-              <div class="bubble">About half of these credit memos have no structured reason code, just free-text comments. Can you infer a likely category from the comment text, and flag your confidence level for each one?</div>
+              <div class="bubble">Many records are missing structured categorization and only include free-text notes. Can we infer likely categories while clearly distinguishing inferred results from verified ones?</div>
             </div>
             <div class="msg assistant">
-              <div class="who">Claude</div>
-              <div class="bubble">I can infer categories using keyword matching against your existing reason codes. I'd flag confidence as High/Medium/Low based on keyword strength, and I'd keep these separate from your structured-code totals rather than blending them — otherwise an inferred credit looks as certain as a documented one.</div>
+              <div class="who">AI Assistant</div>
+              <div class="bubble">Yes. We can generate inferred categories using keyword matching or similarity while assigning confidence scores and keeping inferred records separate from verified data.</div>
             </div>
             <div class="msg user">
               <div class="who">Chloe</div>
@@ -259,10 +248,9 @@
     <p class="label slate">Skills this built</p>
     <hr class="rule">
     <div class="tags" style="font-size:13px; line-height:2;">
-      Structify pipeline design &middot; Confidence-scored inference over
-      unstructured text &middot; ERP data extraction &middot; Root-cause
-      classification &middot; Designing human-approval gates into automation
-      &middot; Deciding what NOT to automate
+      Enterprise workflow analysis &middot; Business process redesign &middot; AI-assisted decision support &middot;
+      Data pipeline architecture &middot; Human-approval gates into automation &middot; Operational dashboard design 
+      &middot; Root-cause analysis &middot; Systems thinking &middot; Deciding what NOT to automate
     </div>
   </section>
 
