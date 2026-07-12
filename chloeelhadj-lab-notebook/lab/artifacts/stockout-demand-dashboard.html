@@ -69,7 +69,7 @@
   <header>
     <div>
       <div class="brand-eyebrow">Case Study 01 · Understanding Inventory Stockouts</div>
-      <h1>Demand Impact Analysis</h1>
+      <h1>Why Were Products Going Out of Stock?</h1>
     </div>
     <div class="window-tag">Long rolling window of order history<br>Source: internal accounting platform (live)</div>
   </header>
@@ -77,14 +77,14 @@
   <div class="panel-frame">
 
     <div class="kpi-row">
-      <div class="kpi"><div class="kpi-label">History depth</div><div class="kpi-value">Long rolling window of order data</div></div>
+      <div class="kpi"><div class="kpi-label">Why are products unexpectedly going out of stock?</div><div class="kpi-value">A handful of wholesale customers create demand spikes</div></div>
       <div class="kpi"><div class="kpi-label">Confirmed stock-out events</div><div class="kpi-value">A small number this period</div></div>
       <div class="kpi"><div class="kpi-label">Demand impact during gaps</div><div class="kpi-value">Near-total order suppression</div></div>
       <div class="kpi"><div class="kpi-label">Root driver</div><div class="kpi-value">Large, coordinated wholesale pre-buys</div></div>
     </div>
 
     <section>
-      <h2 class="section">Root Cause Pattern</h2>
+      <h2 class="section">How a Stockout Happens</h2>
       <p class="section-note">A large wholesale account places a coordinated bulk order, and inventory can't recover before customers notice.</p>
       <div class="flow-v">
         <div class="flow-v-step">Normal daily demand</div>
@@ -116,7 +116,7 @@
     </section>
 
     <section>
-      <h2 class="section">Fastest-Moving Products</h2>
+      <h2 class="section">Demand Spike Analysis</h2>
       <p class="section-note">Ranked by sales velocity across the tracked catalog.</p>
       <div class="bar-row"><div>Product A</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-rank">Fastest</div></div>
       <div class="bar-row"><div>Product C</div><div class="bar-track"><div class="bar-fill" style="width:45%"></div></div><div class="bar-rank">2nd</div></div>
@@ -124,8 +124,9 @@
     </section>
 
     <section>
-      <h2 class="section">Wholesale Account Concentration</h2>
-      <p class="section-note">A small handful of large accounts account for a disproportionate share of total order volume.</p>
+      <h2 class="section">Key Insight</h2>
+      <p class="section-note">Inventory planning assumed demand would arrive gradually across the month.
+        Instead, a small number of wholesale customers concentrated weeks of demand into a single purchasing event. The resulting spike depleted inventory before replenishment cycles could react.</p>
       <div class="bar-row"><div>Customer A</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-rank">Largest</div></div>
       <div class="bar-row"><div>Customer B</div><div class="bar-track"><div class="bar-fill" style="width:21%"></div></div><div class="bar-rank">2nd</div></div>
       <div class="bar-row"><div>Customer C</div><div class="bar-track"><div class="bar-fill" style="width:9%"></div></div><div class="bar-rank">3rd</div></div>
