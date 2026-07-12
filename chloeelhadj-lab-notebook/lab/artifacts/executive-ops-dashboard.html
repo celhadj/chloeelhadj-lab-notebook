@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Case Study 01 — Executive Operations Dashboard</title>
+<title>Case Study 01 — Executive Operations Summary</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -58,14 +58,14 @@
       <div class="brand-eyebrow">Case Study 01 · Executive View</div>
       <h1>Executive Operations Dashboard</h1>
     </div>
-    <div class="window-tag">Live, direct-from-source on every run<br>Source: internal accounting platform</div>
+    <div class="window-tag">Live, direct-from-source<br>Source: internal accounting platform</div>
   </header>
 
   <div class="panel-frame">
 
     <section>
-      <h2 class="section">Four Facets, One View</h2>
-      <p class="section-note">A single consolidated read on the business, refreshed live from source data with no caching between runs.</p>
+      <h2 class="section">Four Aspects, One View</h2>
+      <p class="section-note">A consolidated view of four operational areas, updates directly from the source system on each run.</p>
       <div class="status-grid">
         <div class="status-card">
           <div class="status-facet">AR Credits</div>
@@ -80,7 +80,7 @@
         <div class="status-card">
           <div class="status-facet">Sales</div>
           <span class="stamp low">Limited</span>
-          <div class="status-desc">Header-level only — line-item detail isn't available from the current source</div>
+          <div class="status-desc">Limited to summary-level reporting; line-item sales data was not available</div>
         </div>
         <div class="status-card">
           <div class="status-facet">Payments</div>
@@ -93,10 +93,10 @@
     <section>
       <h2 class="section">Architecture</h2>
       <div class="flow">
-        <div class="flow-step">Extractors (one per facet)</div><div class="flow-arrow">→</div>
-        <div class="flow-step">Aggregator</div><div class="flow-arrow">→</div>
-        <div class="flow-step">Facet detail views</div><div class="flow-arrow">→</div>
-        <div class="flow-step">Live consolidated dashboard</div>
+        <div class="flow-step">Source Systems</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Data Systems</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Data Validation</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Executive Dashboard</div>
       </div>
       <p class="section-note" style="margin-top:10px;">Every extractor queries the source system directly on each run — no cached or stale metrics.</p>
     </section>
@@ -104,10 +104,11 @@
     <section>
       <h2 class="section">Key Decisions</h2>
       <ul class="lessons">
-        <li><b>Dropped a fifth facet (AR aging)</b> after repeated data-reliability issues — four solid, trustworthy facets beat five with one broken.</li>
-        <li><b>Queries the source system directly</b> rather than relying on cached pipeline outputs, for freshness on every run.</li>
-        <li><b>Fixed a visualization data-binding issue</b> so the live dashboard renders correctly instead of showing blank values.</li>
-        <li><b>Sales is header-only for now</b> since the source system doesn't expose line-item detail — the structure is ready to add it once that access exists.</li>
+        <li><b>Removed the AR aging module after repeated reliability issues. A smaller dashboard built on trustworthy, validated data is more
+          useful than a larger one built on uncertain data.</li>
+        <li><b>Reads directly from the source system instead of cached outputs to ensure every run reflects current data</b> rather than relying on cached pipeline outputs, for freshness on every run.</li>
+        <li><b>Resolve a data-binding issue</b> so the live dashboard renders correctly instead of showing blank values.</li>
+        <li><b>Kept the sales module intentionally limited until line-item data becomes available.</li>
       </ul>
     </section>
 
@@ -116,7 +117,7 @@
     </div>
 
   </div>
-  <footer>Multi-node pipeline · scheduled or on-demand runs · full row-level lineage</footer>
+  <footer>multi-stage pipeline · live queries · row-level lineage</footer>
   <div class="synthetic-note">Anonymized case-study reconstruction — company and figures are fictional or generalized. Structure mirrors original pipeline output.</div>
 </div>
 </body>
