@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Case Study 01 — Finance Operations Dashboard</title>
+<title>Case Study 01 — Accounts Receivable Monitoring Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -68,16 +68,16 @@
       <div class="brand-eyebrow">Case Study 01 · Receivables Operations</div>
       <h1>Finance Operations Dashboard</h1>
     </div>
-    <div class="window-tag">Source: internal accounting platform (live)<br>Refreshed on a recurring schedule</div>
+    <div class="window-tag">Source: internal accounting platform (live)<br>Updated automatically</div>
   </header>
 
   <div class="panel-frame">
 
     <div class="kpi-row">
-      <div class="kpi"><div class="kpi-label">Customer base</div><div class="kpi-value">Broad, with outstanding balances</div></div>
-      <div class="kpi"><div class="kpi-label">Concentration</div><div class="kpi-value">Top few accounts drive a large share of total AR</div></div>
+      <div class="kpi"><div class="kpi-label">Customer base</div><div class="kpi-value">Active B2B wholesale accounts</div></div>
+      <div class="kpi"><div class="kpi-label">Concentration</div><div class="kpi-value">Largest balances concentrated among a small number of accounts</div></div>
       <div class="kpi"><div class="kpi-label">Aging profile</div><div class="kpi-value">Largest bucket is long-overdue (120+ days)</div></div>
-      <div class="kpi"><div class="kpi-label">Chronic issues</div><div class="kpi-value">A subset shows a repeated late-payment pattern</div></div>
+      <div class="kpi"><div class="kpi-label">Chronic issues</div><div class="kpi-value">Repeat late-payment behavior identified</div></div>
     </div>
 
     <section>
@@ -86,14 +86,14 @@
         <div class="flow-step">Extract open invoices</div><div class="flow-arrow">→</div>
         <div class="flow-step">Assign aging buckets</div><div class="flow-arrow">→</div>
         <div class="flow-step">Aggregate by customer</div><div class="flow-arrow">→</div>
-        <div class="flow-step">Flag tail accounts</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Identify high-risk accounts</div><div class="flow-arrow">→</div>
         <div class="flow-step">Consolidate &amp; prioritize</div>
       </div>
     </section>
 
     <section>
       <h2 class="section">AR Concentration</h2>
-      <p class="section-note">A small number of accounts represent an outsized share of total outstanding balances.</p>
+      <p class="section-note">A small number of customers account for an outsized share of total outstanding receivables</p>
       <table>
         <thead><tr><th>Customer</th><th>Relative Exposure</th><th>Risk</th></tr></thead>
         <tbody>
@@ -103,7 +103,7 @@
         </tbody>
       </table>
       <div class="callout">
-        <b>Concentration risk:</b> only a handful of accounts qualify as "tail" accounts — each driving an outsized share of total AR on its own — meaning a small number of relationships carry a large slice of the company's total exposure.
+        <b>Concentration risk:</b> A handful of customers account for a disproportionate share of total outstanding receivables. Prioritizing these relationships first has the greatest potential impact on reducing overall exposure.
       </div>
     </section>
 
@@ -114,7 +114,7 @@
       <div class="bar-row"><div>60 days</div><div class="bar-track"><div class="bar-fill" style="width:55%"></div></div><div class="bar-rank">3rd</div></div>
       <div class="bar-row"><div>90 days</div><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div><div class="bar-rank">2nd</div></div>
       <div class="bar-row"><div>120+ days</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-rank">Largest</div></div>
-      <p class="section-note" style="margin-top:10px;">Multiple accounts show invoices spanning several aging buckets at once — a pattern flagged as chronic payment behavior.</p>
+      <p class="section-note" style="margin-top:10px;">Several customers consistently appear across multiple aging buckets, suggesting recurring payment delays rather than isolated late invoices.</p>
     </section>
 
     <section>
@@ -127,15 +127,15 @@
           <tr><td class="name">Share of Total AR</td><td>Portion of company-wide outstanding balance this customer represents</td></tr>
           <tr><td class="name">Oldest Overdue Invoice</td><td>Age of the oldest unpaid invoice</td></tr>
           <tr><td class="name">Chronic Payment Flag</td><td>True if invoices consistently run well past due</td></tr>
-          <tr><td class="name">Tail Account Flag</td><td>True if the customer drives an outsized share of AR</td></tr>
-          <tr><td class="name">Collection Priority Score</td><td>Composite ranking blending AR share, age, and payment behavior</td></tr>
+          <tr><td class="name">High Exposure Flag</td><td>True if the customer drives an outsized share of AR</td></tr>
+          <tr><td class="name">Collection Priority Score</td><td>Combined score based on balancing size, invoice age, and payment history.</td></tr>
         </tbody>
       </table>
       <p class="section-note" style="margin-top:10px;">Sorted by priority score, so collection teams focus on the highest-impact accounts first.</p>
     </section>
 
   </div>
-  <footer>Five-stage pipeline · full audit lineage · scheduled refresh</footer>
+  <footer>Automated pipeline · scheduled refresh · audit trail</footer>
   <div class="synthetic-note">Anonymized case-study reconstruction — company and customers are fictional or generalized. Structure mirrors original pipeline output.</div>
 </div>
 </body>
