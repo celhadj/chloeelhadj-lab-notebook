@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Case Study 01 — Understanding Inventory Stockouts: Risk & Replenishment Forecast</title>
+<title>Case Study 01 — Inventory Health Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -74,10 +74,10 @@
   <div class="panel-frame">
 
     <div class="kpi-row">
-      <div class="kpi"><div class="kpi-label">Scope</div><div class="kpi-value">Full finished-goods catalog</div></div>
-      <div class="kpi"><div class="kpi-label">Health split</div><div class="kpi-value">Majority healthy; a small number flagged urgent</div></div>
-      <div class="kpi"><div class="kpi-label">Forecast horizon</div><div class="kpi-value">Near-, mid-, and longer-term risk windows</div></div>
-      <div class="kpi"><div class="kpi-label">Root cause clarity</div><div class="kpi-value">Distinguishes packaging vs. ingredient bottlenecks</div></div>
+      <div class="kpi"><div class="kpi-label">Scope</div><div class="kpi-value">Finished goods monitored</div></div>
+      <div class="kpi"><div class="kpi-label">Health split</div><div class="kpi-value">Most products healthy; a small set requires immediate attention</div></div>
+      <div class="kpi"><div class="kpi-label">Forecast horizon</div><div class="kpi-value">Short-, medium-, and longer-term projections</div></div>
+      <div class="kpi"><div class="kpi-label">Root cause clarity</div><div class="kpi-value">Separates packaging and ingredient bottlenecks</div></div>
     </div>
 
     <section>
@@ -86,17 +86,17 @@
         <div class="dash-card">
           <div class="dash-card-title">Daily Health Check</div>
           <div class="dash-card-audience">Anyone · quick glance</div>
-          <div class="dash-card-detail">A short rolling summary of overall catalog health, refreshed on every run.</div>
+          <div class="dash-card-detail">Rolling summary of inventory  health, refreshed on every run.</div>
         </div>
         <div class="dash-card">
           <div class="dash-card-title">Reorder Dashboard</div>
           <div class="dash-card-audience">Procurement / restock team</div>
-          <div class="dash-card-detail">Packaging ranked by urgency, with vendor delivery tracking and upcoming order timing.</div>
+          <div class="dash-card-detail">Reorder recommendations ranked by urgency, with open purchase orders and expected delivery timings.</div>
         </div>
         <div class="dash-card">
           <div class="dash-card-title">Root Cause Dashboard</div>
           <div class="dash-card-audience">Supply chain analysis</div>
-          <div class="dash-card-detail">Historical stock-out events classified by whether packaging, ingredients, or production was the bottleneck.</div>
+          <div class="dash-card-detail">Groups historical stock-outs by likely cause to identify recurring operational bottlenecks (packaging, ingredients, production, etc.).</div>
         </div>
       </div>
     </section>
@@ -105,12 +105,12 @@
       <h2 class="section">Critical Findings</h2>
       <div class="finding-cards">
         <div class="finding-card critical">
-          <div class="finding-name">Product A</div>
+          <div class="finding-name">SKU A</div>
           <div class="finding-row"><b>Priority:</b> Critical</div>
           <div class="finding-row"><b>Reason:</b> Packaging shortage</div>
           <div class="finding-row"><b>Risk:</b> <span class="stamp high">High</span></div>
           <div class="finding-row"><b>Predicted stock-out:</b> Very soon</div>
-          <div class="finding-row"><b>Action:</b> Emergency reorder</div>
+          <div class="finding-row"><b>Action:</b> Expedite packaging reorder</div>
         </div>
         <div class="finding-card healthy">
           <div class="finding-name">Product B</div>
@@ -125,16 +125,16 @@
     <section>
       <h2 class="section">Key Decisions &amp; Learnings</h2>
       <ul class="lessons">
-        <li><b>Bill-of-materials data wasn't accessible.</b> A name-matching strategy links finished goods to their packaging and ingredients by product variety instead, working for the large majority of cases.</li>
-        <li><b>Seasonal detection is data-driven, not guesswork.</b> A concentration test — checking whether a few months dominate total volume — separates seasonal items from steady sellers automatically.</li>
-        <li><b>Receipts stand in for true consumption data,</b> since sales-side detail wasn't fully available; conservative estimates avoid over-ordering.</li>
-        <li><b>Purchase order status alone isn't reliable.</b> Cross-referencing order lines against actual receipts correctly identifies over-delivered vs. short-shipped items.</li>
-        <li><b>A "committed inventory" flag proved unreliable,</b> showing phantom commitments with no backing orders — on-hand quantity alone gives a simpler, more accurate reorder signal.</li>
+        <li><b>Bill-of-materials data wasn't accessible.</b> Without access to a bill of materials, finished goods were linked to packaging through standardized product names. The approach covered most products while remaining easy to audit.</li>
+        <li><b>Seasonality was identified from purchasing patterns rather than predefined product lists.</b> A concentration test — checking whether a few months dominate total volume — separates seasonal items from steady sellers automatically.</li>
+        <li><b>Receiving history was used as a proxy where consumption data was not available,</b> since sales-side detail wasn't fully available; conservative estimates avoid over-ordering.</li>
+        <li><b>Purchase order status alone was validated against records to distinguish delayed deliveries from completed orders.</b> Cross-referencing order lines against actual receipts correctly identifies over-delivered vs. short-shipped items.</li>
+        <li><b>A "committed inventory" flag proved unreliable,</b> showing the committed inventory field was excluded after testing showed it frequently overstated inventory already allocated.</li>
       </ul>
     </section>
 
     <div class="callout">
-      <b>Why this matters:</b> the shift is from reactive fire-fighting ("why did we run out?") to predictive planning ("when will we run out, and what specifically do we reorder today?") — with root-cause clarity that distinguishes packaging bottlenecks from ingredient bottlenecks, and vendor transparency around late or short deliveries.
+      <b>Why this matters:</b> The challenge was not predicting demand, it was determining why an item was at risk. Separating packaging shortages from ingredient constraints made it possible to recommend different actions instead of treating every stock-out as the same problem.
     </div>
 
   </div>
