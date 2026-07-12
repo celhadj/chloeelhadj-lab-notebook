@@ -138,12 +138,12 @@
     <p class="label">Entry 01 &middot; Jul 2026</p>
     <h1>Case Study 01 &mdash; AI Implementation in Consumer Goods</h1>
     <p class="lede" style="margin-top:20px;">
-      During a summer internship at a family-owned manufacturing company, I designed five AI-enabled pipelines
-      to address operational challenges across accounting, inventory, and finance. This case study focuses on 
-      the reasoning behind each project: the business problem, the approach, and what I learned in the process.
-      This case study and all of its examples have been anonymized to protect operational data and internal 
-      business processes. All examples reflect the original technological architecture and design decisions while 
-      omitting identifying information. 
+      During a summer internship at a family-owned consumer goods company, I was tasked with identifying operational
+      bottlenecks across inventory, accounting, and production. Rather than treating them as isolated problems, I 
+      explored whether AI could simplify repetitive work while leaving important decisions in human hands.
+      This page documents five small implementation projects. Each focuses less on the technology itself and more on 
+      the reasoning behind it: the problem, the design decisions, and what I learned. 
+      Please note: company names, data, and identifying details have been intentionally anonymized.
     </p>
   </section>
 
@@ -154,9 +154,9 @@
     <p class="pipeline-desc">
       Across the company's delivery routes, credit memos had no single view
       connecting which clients, which drivers, and which reason codes were
-      actually driving them. Along the way, a meaningful subset of memos
-      turned out to have no reason code at all &mdash; recovered from
-      free-text notes with a full confidence-scored audit trail.
+      actually driving them. Along the way, several memos turned out to have 
+      no reason code at all &mdash; recovered from free-text notes with a full 
+      confidence-scored audit trail.
     </p>
 
     <details class="dashboard-toggle">
@@ -172,14 +172,14 @@
         <p><strong>The problem:</strong> credit memos issued across the
         company's delivery routes had no single view connecting which
         clients, which drivers, and which reason codes were actually
-        driving them &mdash; so patterns were invisible route by route.</p>
-        <p><strong>What I built:</strong> a pipeline matching credit memos to
-        invoices by customer and item (leaning on the platform's built-in
-        document references where available), scoped to the last quarter as
-        a first pass toward eventually covering all historical data. It
-        surfaced which clients, drivers, and reason codes &mdash; damaged
+        causing them &mdash; so patterns were invisible route by route.</p>
+        <p><strong>What I built:</strong> an internal tool matching credit 
+        memos to invoices by customer and item (leaning on the platform's built-in
+        document references where available), intentionally limited to the last quarter 
+        as a first pass toward eventually covering all historical data. It
+        revealed which clients, drivers, and reason codes &mdash; damaged
         item, picking error, customer/courier return &mdash; were most
-        associated with credit memos across each route.</p>
+        linked to credit memos across each route.</p>
         <p><strong>Key discovery:</strong> while reviewing the reason-code
         data, I found a meaningful subset of credit memos had no reason code
         recorded at all &mdash; just free-text notes. That became a second
@@ -234,7 +234,7 @@
 
     <p class="pipeline-desc">
       Expired cards were only ever caught reactively &mdash; after a payment
-      already failed. This pipeline flips that: it proactively flags cards
+      already failed. This system flips that: it proactively flags cards
       approaching expiration, drafts outreach before the payment is due, and
       logs every alert and customer response back to their profile.
     </p>
@@ -253,7 +253,7 @@
         manual reconciliation &mdash; by the time anyone noticed, a payment
         attempt had already failed, and staff had to reach out, wait for a
         response, and update the card before it could be reprocessed.</p>
-        <p><strong>What I built:</strong> an AI pipeline that proactively
+        <p><strong>What I built:</strong> a dashboard that proactively
         flagged accounts with cards approaching expiration &mdash; not just
         already-expired ones &mdash; filtered to active, repeat accounts,
         drafted outreach tailored to who needed to see it (relationship
@@ -324,7 +324,7 @@
         pull that had silently truncated and missed records for those
         specific items.</p>
         <p><strong>Phase 4 &mdash; rebuilding with verification:</strong> I
-        rebuilt the pipeline to properly paginate the full dataset (500K+
+        rebuilt the prototype to properly section the full dataset (500K+
         line items), detect gaps from the corrected data, then verify every
         flagged gap directly against the source platform's invoices and
         delivery notes before calling it real, enriching confirmed gaps with
@@ -434,23 +434,22 @@
     <p class="label slate">The pattern across all five</p>
     <hr class="rule">
     <p>
-      None of these were hard because the data extraction was hard. AI made
-      pulling the data the easy part. Every one of these projects came down to the
-      same three judgment calls: what to trust versus what to infer, what to filter
-      out versus surface, and who specifically should see the result before anything
-      became automatic. That became the real lesson of the project. Building pipelines
-      was only part of the work. The harder challenge was deciding what to trust, infer,
-      filter, and where human judgment should remain part of the process.
+      None of these projects were ultimately constrained by data extraction. Modern 
+      AI tools have made that relatively straightforward. The harder questions were
+      deciding what to trust, what to infer, what to filter out, and where human 
+      judgment should remain part of the process. This was ultimately the lesson of 
+      my internship. Designing the worflows was often easier than deciding how they 
+      could be used.
     </p>
   </section>
 
   <section class="reveal">
-    <p class="label slate">Skills this built</p>
+    <p class="label slate">What this experience taught me</p>
     <hr class="rule">
     <div class="tags" style="font-size:13px; line-height:2;">
-      Organization workflow analysis &middot; Business operations &middot; AI implementation &middot;
-      Operational dashboards &middot; Prompt engineering &middot; Systems thinking &middot; Process 
-      redesign &middot
+      workflow mapping &middot; operational analysis &middot; AI implementation &middot;
+      dashboard design &middot; systems thinking &middot; communicating technical ideas to
+      non-technical teams &middot
     </div>
   </section>
 
