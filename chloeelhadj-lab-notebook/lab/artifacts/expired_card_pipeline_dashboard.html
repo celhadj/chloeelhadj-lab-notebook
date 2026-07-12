@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Company — Card Expiration & Outreach Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDE6D6; --paper-line:#DCD2BA; --ink:#2B2318; --ink-soft:#6B675C;
+    --amber:#B8752E; --jade:#3F6B4F; --clay:#A8402F; --white-card:#F7F3E9;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);
+    background-image:repeating-linear-gradient(transparent, transparent 27px, var(--paper-line) 28px);
+    color:var(--ink);font-family:'Inter',sans-serif;padding:32px 24px 64px;}
+  .wrap{max-width:1040px;margin:0 auto;}
+  header{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px double var(--ink);
+    padding-bottom:14px;margin-bottom:22px;flex-wrap:wrap;gap:12px;}
+  .brand-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px;}
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:34px;margin:0;letter-spacing:-0.01em;}
+  .window-tag{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-soft);text-align:right;}
+  .window-tag b{color:var(--ink);}
+  .panel-frame{border:1px solid var(--ink);background:var(--white-card);padding:28px;}
+  .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:28px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);}
+  .kpi{padding:16px 14px;border-right:1px solid var(--paper-line);}
+  .kpi:last-child{border-right:none;}
+  .kpi-label{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;}
+  .kpi-value{font-family:'Fraunces',serif;font-size:17px;font-weight:600;line-height:1.3;}
+  h2.section{font-family:'Fraunces',serif;font-size:19px;font-weight:600;margin:0 0 4px;}
+  .section-note{font-size:12.5px;color:var(--ink-soft);margin:0 0 16px;}
+
+  .flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:8px;}
+  .flow-step{border:1px solid var(--ink);background:var(--paper);padding:10px 14px;font-family:'JetBrains Mono',monospace;font-size:11.5px;text-align:center;flex:1;min-width:120px;}
+  .flow-arrow{font-size:16px;color:var(--ink-soft);}
+
+  .compare{display:flex;gap:16px;margin:18px 0;}
+  .compare-card{flex:1;border:1px solid var(--ink);padding:16px;}
+  .compare-card.kept{border-left:4px solid var(--jade);}
+  .compare-card.dropped{border-left:4px solid var(--clay);}
+  .compare-name{font-family:'Fraunces',serif;font-weight:600;font-size:16px;margin-bottom:6px;}
+  .compare-tag{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:8px;}
+  .compare-detail{font-size:13px;line-height:1.5;}
+
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px;}
+  th{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;text-align:left;color:var(--ink-soft);border-bottom:1px solid var(--ink);padding:8px 10px;}
+  td{padding:9px 10px;border-bottom:1px solid var(--paper-line);font-size:12.5px;}
+  td.name{font-weight:500;}
+  tr:last-child td{border-bottom:none;}
+
+  .stamp{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border:1.5px solid currentColor;border-radius:3px;transform:rotate(-2deg);}
+  .stamp.high{color:var(--clay);}
+  .stamp.medium{color:var(--amber);}
+  .stamp.low{color:var(--jade);}
+
+  .callout{margin-top:20px;padding:14px 16px;border-left:3px solid var(--jade);background:#EAF0EA;font-size:13px;line-height:1.5;}
+  .callout b{color:var(--jade);}
+
+  ul.lessons{list-style:none;padding:0;margin:0;}
+  ul.lessons li{padding:10px 0;border-bottom:1px solid var(--paper-line);font-size:13px;line-height:1.5;}
+  ul.lessons li:last-child{border-bottom:none;}
+  ul.lessons b{font-family:'Fraunces',serif;font-weight:600;}
+
+  footer{margin-top:28px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--ink-soft);}
+  .synthetic-note{text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft);margin-top:8px;opacity:.7;}
+  section{margin-bottom:30px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="brand-eyebrow">The Company · Receivables Operations</div>
+      <h1>Card Expiration & Outreach Pipeline</h1>
+    </div>
+    <div class="window-tag">Source: internal accounting platform (live)<br>Review channel: team messaging, human-approved</div>
+  </header>
+
+  <div class="panel-frame">
+
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-label">Account base</div><div class="kpi-value">Broad, recurring B2B customers</div></div>
+      <div class="kpi"><div class="kpi-label">After activity filter</div><div class="kpi-value">Majority retained; one-time buyers dropped</div></div>
+      <div class="kpi"><div class="kpi-label">Record issue split</div><div class="kpi-value">Most are missing info, not expired</div></div>
+      <div class="kpi"><div class="kpi-label">Output</div><div class="kpi-value">Personalized drafts, human-reviewed</div></div>
+    </div>
+
+    <section>
+      <h2 class="section">Pipeline Flow</h2>
+      <p class="section-note">Extracts card records, filters by customer activity, enriches with contact info, and routes personalized drafts for review before anything is sent.</p>
+      <div class="flow">
+        <div class="flow-step">Extract card &amp; contact data</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Filter by customer activity</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Enrich with rep &amp; order history</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Route by scenario</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Draft personalized email</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Human review gate</div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section">Filtering Logic</h2>
+      <p class="section-note">Activity-based targeting keeps outreach focused on customers worth the effort.</p>
+      <div class="compare">
+        <div class="compare-card kept">
+          <div class="compare-tag">Kept</div>
+          <div class="compare-name">Customer A</div>
+          <div class="compare-detail">Recent, repeat orders across multiple years — a loyal account worth a personal follow-up even during a quiet stretch.</div>
+        </div>
+        <div class="compare-card dropped">
+          <div class="compare-tag">Dropped</div>
+          <div class="compare-name">Customer X</div>
+          <div class="compare-detail">Last order was well over a year ago, with only one or two orders total — a one-time buyer, not worth outreach effort.</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section">Routing &amp; Personalization</h2>
+      <table>
+        <thead><tr><th>Scenario</th><th>Recipient</th><th>Email Focus</th></tr></thead>
+        <tbody>
+          <tr><td class="name">Card expired, active account</td><td>Sales rep</td><td>Directs rep to loop in the AR contact — reps don't have system access to update records themselves</td></tr>
+          <tr><td class="name">Card info incomplete</td><td>Customer</td><td>Warm, conversational request — no account balance or order history shown</td></tr>
+          <tr><td class="name">No rep on file</td><td>AR team</td><td>Ready-to-send manual template with internal reference info</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">
+        <b>Human approval gate:</b> every draft is posted to a private review channel before anything reaches a customer. Nothing sends automatically — a person approves each batch, and every run leaves a timestamped audit trail of what was found, filtered, and drafted.
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section">Lessons Learned</h2>
+      <ul class="lessons">
+        <li><b>Activity matters more than raw count.</b> Filtering by order history focuses effort on customers actually worth reaching.</li>
+        <li><b>Reps can't update records directly.</b> Emails now direct them to the right internal contact instead.</li>
+        <li><b>Internal and customer-facing content should differ.</b> Order history belongs in internal notes, not customer emails.</li>
+        <li><b>Always generate a draft.</b> Even accounts with no rep or email on file get a manual template, so nothing falls through the cracks.</li>
+        <li><b>Timezone-aware date handling</b> avoids miscounting expirations near month boundaries.</li>
+        <li><b>Card-type names are pulled live from the platform</b> rather than hardcoded, so the pipeline stays correct as card programs change.</li>
+      </ul>
+    </section>
+
+  </div>
+  <footer>Automated pipeline · runs on a recurring schedule · human review before any outreach</footer>
+  <div class="synthetic-note">Anonymized case-study reconstruction — company and customers are fictional or generalized. Structure mirrors original pipeline output.</div>
+</div>
+</body>
+</html>

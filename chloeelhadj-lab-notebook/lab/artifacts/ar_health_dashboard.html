@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Company — Accounts Receivable Health Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDE6D6; --paper-line:#DCD2BA; --ink:#2B2318; --ink-soft:#6B675C;
+    --amber:#B8752E; --jade:#3F6B4F; --clay:#A8402F; --white-card:#F7F3E9;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);
+    background-image:repeating-linear-gradient(transparent, transparent 27px, var(--paper-line) 28px);
+    color:var(--ink);font-family:'Inter',sans-serif;padding:32px 24px 64px;}
+  .wrap{max-width:1040px;margin:0 auto;}
+  header{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px double var(--ink);
+    padding-bottom:14px;margin-bottom:22px;flex-wrap:wrap;gap:12px;}
+  .brand-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px;}
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:32px;margin:0;letter-spacing:-0.01em;}
+  .window-tag{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-soft);text-align:right;}
+  .panel-frame{border:1px solid var(--ink);background:var(--white-card);padding:28px;}
+  .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:28px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);}
+  .kpi{padding:16px 14px;border-right:1px solid var(--paper-line);}
+  .kpi:last-child{border-right:none;}
+  .kpi-label{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;}
+  .kpi-value{font-family:'Fraunces',serif;font-size:15.5px;font-weight:600;line-height:1.3;}
+  h2.section{font-family:'Fraunces',serif;font-size:19px;font-weight:600;margin:0 0 4px;}
+  .section-note{font-size:12.5px;color:var(--ink-soft);margin:0 0 16px;}
+  section{margin-bottom:30px;}
+
+  .flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:8px;}
+  .flow-step{border:1px solid var(--ink);background:var(--paper);padding:10px 12px;font-family:'JetBrains Mono',monospace;font-size:11px;text-align:center;flex:1;min-width:100px;}
+  .flow-arrow{font-size:16px;color:var(--ink-soft);}
+
+  .mini-track{background:#E4DCC7;height:10px;position:relative;border:1px solid var(--paper-line);width:140px;}
+  .mini-fill{position:absolute;left:0;top:0;bottom:0;background:var(--amber);}
+
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px;}
+  th{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;text-align:left;color:var(--ink-soft);border-bottom:1px solid var(--ink);padding:8px 10px;}
+  td{padding:9px 10px;border-bottom:1px solid var(--paper-line);font-size:12.5px;}
+  td.name{font-weight:500;}
+  tr:last-child td{border-bottom:none;}
+
+  .stamp{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border:1.5px solid currentColor;border-radius:3px;transform:rotate(-2deg);}
+  .stamp.high{color:var(--clay);}
+  .stamp.medium{color:var(--amber);}
+  .stamp.low{color:var(--jade);}
+
+  .bar-row{display:grid;grid-template-columns:110px 1fr 90px;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--paper-line);font-size:13px;}
+  .bar-row:last-child{border-bottom:none;}
+  .bar-track{background:#E4DCC7;height:14px;position:relative;border:1px solid var(--paper-line);}
+  .bar-fill{position:absolute;left:0;top:0;bottom:0;background:var(--clay);}
+  .bar-rank{font-family:'JetBrains Mono',monospace;text-align:right;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);}
+
+  .callout{margin-top:14px;padding:14px 16px;border-left:3px solid var(--clay);background:#F3E7DE;font-size:13px;line-height:1.5;}
+  .callout b{color:var(--clay);}
+
+  footer{margin-top:28px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--ink-soft);}
+  .synthetic-note{text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft);margin-top:8px;opacity:.7;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="brand-eyebrow">The Company · Receivables Operations</div>
+      <h1>Accounts Receivable Health Dashboard</h1>
+    </div>
+    <div class="window-tag">Source: internal accounting platform (live)<br>Refreshed on a recurring schedule</div>
+  </header>
+
+  <div class="panel-frame">
+
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-label">Customer base</div><div class="kpi-value">Broad, with outstanding balances</div></div>
+      <div class="kpi"><div class="kpi-label">Concentration</div><div class="kpi-value">Top few accounts drive a large share of total AR</div></div>
+      <div class="kpi"><div class="kpi-label">Aging profile</div><div class="kpi-value">Largest bucket is long-overdue (120+ days)</div></div>
+      <div class="kpi"><div class="kpi-label">Chronic issues</div><div class="kpi-value">A subset shows a repeated late-payment pattern</div></div>
+    </div>
+
+    <section>
+      <h2 class="section">Pipeline Flow</h2>
+      <div class="flow">
+        <div class="flow-step">Extract open invoices</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Assign aging buckets</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Aggregate by customer</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Flag tail accounts</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Consolidate &amp; prioritize</div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section">AR Concentration</h2>
+      <p class="section-note">A small number of accounts represent an outsized share of total outstanding balances.</p>
+      <table>
+        <thead><tr><th>Customer</th><th>Relative Exposure</th><th>Risk</th></tr></thead>
+        <tbody>
+          <tr><td class="name">Customer A</td><td><div class="mini-track"><div class="mini-fill" style="width:100%"></div></div></td><td><span class="stamp high">High</span></td></tr>
+          <tr><td class="name">Customer B</td><td><div class="mini-track"><div class="mini-fill" style="width:69%"></div></div></td><td><span class="stamp high">High</span></td></tr>
+          <tr><td class="name">Customer C</td><td><div class="mini-track"><div class="mini-fill" style="width:48%"></div></div></td><td><span class="stamp medium">Medium</span></td></tr>
+        </tbody>
+      </table>
+      <div class="callout">
+        <b>Concentration risk:</b> only a handful of accounts qualify as "tail" accounts — each driving an outsized share of total AR on its own — meaning a small number of relationships carry a large slice of the company's total exposure.
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section">Aging Profile</h2>
+      <div class="bar-row"><div>Current</div><div class="bar-track"><div class="bar-fill" style="width:35%"></div></div><div class="bar-rank">Smallest</div></div>
+      <div class="bar-row"><div>30 days</div><div class="bar-track"><div class="bar-fill" style="width:45%"></div></div><div class="bar-rank">4th</div></div>
+      <div class="bar-row"><div>60 days</div><div class="bar-track"><div class="bar-fill" style="width:55%"></div></div><div class="bar-rank">3rd</div></div>
+      <div class="bar-row"><div>90 days</div><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div><div class="bar-rank">2nd</div></div>
+      <div class="bar-row"><div>120+ days</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-rank">Largest</div></div>
+      <p class="section-note" style="margin-top:10px;">Multiple accounts show invoices spanning several aging buckets at once — a pattern flagged as chronic payment behavior.</p>
+    </section>
+
+    <section>
+      <h2 class="section">Dashboard Columns</h2>
+      <table>
+        <thead><tr><th>Column</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td class="name">Customer ID / Name</td><td>Customer identifier</td></tr>
+          <tr><td class="name">Open Invoice Count</td><td>Number of outstanding invoices per customer</td></tr>
+          <tr><td class="name">Share of Total AR</td><td>Portion of company-wide outstanding balance this customer represents</td></tr>
+          <tr><td class="name">Oldest Overdue Invoice</td><td>Age of the oldest unpaid invoice</td></tr>
+          <tr><td class="name">Chronic Payment Flag</td><td>True if invoices consistently run well past due</td></tr>
+          <tr><td class="name">Tail Account Flag</td><td>True if the customer drives an outsized share of AR</td></tr>
+          <tr><td class="name">Collection Priority Score</td><td>Composite ranking blending AR share, age, and payment behavior</td></tr>
+        </tbody>
+      </table>
+      <p class="section-note" style="margin-top:10px;">Sorted by priority score, so collection teams focus on the highest-impact accounts first.</p>
+    </section>
+
+  </div>
+  <footer>Five-stage pipeline · full audit lineage · scheduled refresh</footer>
+  <div class="synthetic-note">Anonymized case-study reconstruction — company and customers are fictional or generalized. Structure mirrors original pipeline output.</div>
+</div>
+</body>
+</html>
