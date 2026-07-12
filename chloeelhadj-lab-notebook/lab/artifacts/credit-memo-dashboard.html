@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Case Study 01 — Recovering Missing Credit Memo Categories</title>
+<title>Case Study 01 — Improving Credit Memo Visibility with AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -288,7 +288,7 @@
       <div class="brand-eyebrow">Case Study 01 · Finance Operations</div>
       <h1>Recovering Missing Credit Memo Categories</h1>
     </div>
-    <div class="window-tag">Window: <b>rolling</b>, updated each run<br>Source: internal accounting platform (live)</div>
+    <div class="window-tag">Window: <b>rolling</b>, updated each run<br>Source: internal accounting system (live)</div>
   </header>
 
   <div class="tabs">
@@ -303,7 +303,7 @@
       <div class="kpi-row">
         <div class="kpi">
           <div class="kpi-label">Credit memo volume</div>
-          <div class="kpi-value">High, reviewed on a rolling basis</div>
+          <div class="kpi-value">Rolling transaction stream</div>
         </div>
         <div class="kpi">
           <div class="kpi-label">Largest category</div>
@@ -431,11 +431,11 @@
       </div>
 
       <h2 class="section">Sample Inference Audit Trail</h2>
-      <p class="section-note">Row-level lineage: note text → matched keywords → inferred category. Kept separate from Pt. 1 metrics to prevent false aggregation.</p>
+      <p class="section-note">Row-level lineage: note text → evidence → inferred category. Kept separate from Pt. 1 metrics to prevent false aggregation.</p>
 
       <table>
         <thead>
-          <tr><th>Memo ID</th><th>Matched Keywords</th><th>Inferred Category</th><th>Confidence</th></tr>
+          <tr><th>Memo ID</th><th>evidence</th><th>Inferred Category</th><th>Confidence</th></tr>
         </thead>
         <tbody>
           <tr>
@@ -474,8 +474,9 @@
 
   </div>
 
-  <footer>Multiple transformation steps · rolling window · updates automatically on each run</footer>
-  <div class="synthetic-note">Anonymized case-study reconstruction — company, customers, and figures are fictional or generalized. Structure mirrors original pipeline output.</div>
+  <footer>automated pipeline · rolling data window · updates automatically on each run</footer>
+  <div class="synthetic-note">This case study is reconfigured from a real internship project. Company identifiers, customer names, and quantiative values have been
+  anonymized or generalized to protect critical information while preserving the workflow and technical approach.</div>
 </div>
 
 <script>
