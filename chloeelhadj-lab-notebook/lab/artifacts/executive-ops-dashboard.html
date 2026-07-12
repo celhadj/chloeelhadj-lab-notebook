@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Case Study 01 — Executive Operations Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDE6D6; --paper-line:#DCD2BA; --ink:#2B2318; --ink-soft:#6B675C;
+    --amber:#B8752E; --jade:#3F6B4F; --clay:#A8402F; --white-card:#F7F3E9;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);
+    background-image:repeating-linear-gradient(transparent, transparent 27px, var(--paper-line) 28px);
+    color:var(--ink);font-family:'Inter',sans-serif;padding:32px 24px 64px;}
+  .wrap{max-width:1040px;margin:0 auto;}
+  header{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px double var(--ink);
+    padding-bottom:14px;margin-bottom:22px;flex-wrap:wrap;gap:12px;}
+  .brand-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px;}
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:32px;margin:0;letter-spacing:-0.01em;}
+  .window-tag{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-soft);text-align:right;}
+  .panel-frame{border:1px solid var(--ink);background:var(--white-card);padding:28px;}
+  h2.section{font-family:'Fraunces',serif;font-size:19px;font-weight:600;margin:0 0 4px;}
+  .section-note{font-size:12.5px;color:var(--ink-soft);margin:0 0 16px;}
+  section{margin-bottom:30px;}
+
+  .status-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .status-card{border:1px solid var(--ink);padding:18px 14px;text-align:center;}
+  .status-facet{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px;}
+  .status-desc{font-size:12px;color:var(--ink-soft);margin-top:8px;line-height:1.4;}
+
+  .stamp{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 14px;border:1.5px solid currentColor;border-radius:3px;transform:rotate(-2deg);}
+  .stamp.high{color:var(--clay);}
+  .stamp.normal{color:var(--jade);}
+  .stamp.low{color:var(--amber);}
+
+  ul.lessons{list-style:none;padding:0;margin:0;}
+  ul.lessons li{padding:10px 0;border-bottom:1px solid var(--paper-line);font-size:13px;line-height:1.5;}
+  ul.lessons li:last-child{border-bottom:none;}
+  ul.lessons b{font-family:'Fraunces',serif;font-weight:600;}
+
+  .callout{margin-top:14px;padding:14px 16px;border-left:3px solid var(--clay);background:#F3E7DE;font-size:13px;line-height:1.5;}
+  .callout b{color:var(--clay);}
+
+  .flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:8px;}
+  .flow-step{border:1px solid var(--ink);background:var(--paper);padding:10px 12px;font-family:'JetBrains Mono',monospace;font-size:11px;text-align:center;flex:1;min-width:110px;}
+  .flow-arrow{font-size:16px;color:var(--ink-soft);}
+
+  footer{margin-top:28px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--ink-soft);}
+  .synthetic-note{text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft);margin-top:8px;opacity:.7;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="brand-eyebrow">Case Study 01 · Executive View</div>
+      <h1>Executive Operations Dashboard</h1>
+    </div>
+    <div class="window-tag">Live, direct-from-source on every run<br>Source: internal accounting platform</div>
+  </header>
+
+  <div class="panel-frame">
+
+    <section>
+      <h2 class="section">Four Facets, One View</h2>
+      <p class="section-note">A single consolidated read on the business, refreshed live from source data with no caching between runs.</p>
+      <div class="status-grid">
+        <div class="status-card">
+          <div class="status-facet">AR Credits</div>
+          <span class="stamp high">High</span>
+          <div class="status-desc">Elevated exposure in the near-term credit window</div>
+        </div>
+        <div class="status-card">
+          <div class="status-facet">Inventory</div>
+          <span class="stamp normal">Normal</span>
+          <div class="status-desc">No critical items; well-stocked overall</div>
+        </div>
+        <div class="status-card">
+          <div class="status-facet">Sales</div>
+          <span class="stamp low">Limited</span>
+          <div class="status-desc">Header-level only — line-item detail isn't available from the current source</div>
+        </div>
+        <div class="status-card">
+          <div class="status-facet">Payments</div>
+          <span class="stamp normal">Normal</span>
+          <div class="status-desc">No compliance issues identified</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section">Architecture</h2>
+      <div class="flow">
+        <div class="flow-step">Extractors (one per facet)</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Aggregator</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Facet detail views</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Live consolidated dashboard</div>
+      </div>
+      <p class="section-note" style="margin-top:10px;">Every extractor queries the source system directly on each run — no cached or stale metrics.</p>
+    </section>
+
+    <section>
+      <h2 class="section">Key Decisions</h2>
+      <ul class="lessons">
+        <li><b>Dropped a fifth facet (AR aging)</b> after repeated data-reliability issues — four solid, trustworthy facets beat five with one broken.</li>
+        <li><b>Queries the source system directly</b> rather than relying on cached pipeline outputs, for freshness on every run.</li>
+        <li><b>Fixed a visualization data-binding issue</b> so the live dashboard renders correctly instead of showing blank values.</li>
+        <li><b>Sales is header-only for now</b> since the source system doesn't expose line-item detail — the structure is ready to add it once that access exists.</li>
+      </ul>
+    </section>
+
+    <div class="callout">
+      <b>Top finding:</b> a single account represents the large majority of total near-term credit risk exposure — a concentration that stands out clearly against every other account and warrants immediate attention from AR management.
+    </div>
+
+  </div>
+  <footer>Multi-node pipeline · scheduled or on-demand runs · full row-level lineage</footer>
+  <div class="synthetic-note">Anonymized case-study reconstruction — company and figures are fictional or generalized. Structure mirrors original pipeline output.</div>
+</div>
+</body>
+</html>
