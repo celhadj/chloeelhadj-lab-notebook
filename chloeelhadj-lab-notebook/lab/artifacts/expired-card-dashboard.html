@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Case Study 01 — Customer Payment Record Maintenance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF; --paper-line:rgba(0,0,0,0.09); --ink:#1A1A1A; --ink-soft:#6B6B68;
+    --amber:#8B8B86; --jade:#3D5A80; --clay:#6E2A34; --white-card:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);
+    
+    color:var(--ink);font-family:'Inter',sans-serif;padding:32px 24px 64px;}
+  .wrap{max-width:1040px;margin:0 auto;}
+  header{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--ink);
+    padding-bottom:14px;margin-bottom:22px;flex-wrap:wrap;gap:12px;}
+  .brand-eyebrow{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px;}
+  h1{font-family:'Times New Roman',serif;font-weight:600;font-size:34px;margin:0;letter-spacing:-0.01em;}
+  .window-tag{font-family:'Inter',sans-serif;font-size:12px;color:var(--ink-soft);text-align:right;}
+  .window-tag b{color:var(--ink);}
+  .panel-frame{border:none;border-top:1px solid var(--ink-soft);padding:28px 0;}
+  .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:28px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);}
+  .kpi{padding:16px 14px;border-right:1px solid var(--paper-line);}
+  .kpi:last-child{border-right:none;}
+  .kpi-label{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;}
+  .kpi-value{font-family:'Times New Roman',serif;font-size:17px;font-weight:600;line-height:1.3;}
+  h2.section{font-family:'Times New Roman',serif;font-size:19px;font-weight:600;margin:0 0 4px;}
+  .section-note{font-size:12.5px;color:var(--ink-soft);margin:0 0 16px;}
+
+  .flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:8px;}
+  .flow-step{border:1px solid var(--paper-line);background:var(--paper);padding:10px 14px;font-family:'Inter',sans-serif;font-size:11.5px;text-align:center;flex:1;min-width:120px;}
+  .flow-arrow{font-size:16px;color:var(--ink-soft);}
+
+  .compare{display:flex;gap:16px;margin:18px 0;}
+  .compare-card{flex:1;border:1px solid var(--paper-line);padding:16px;}
+  .compare-card.kept{border-left:4px solid var(--jade);}
+  .compare-card.dropped{border-left:4px solid var(--clay);}
+  .compare-name{font-family:'Times New Roman',serif;font-weight:600;font-size:16px;margin-bottom:6px;}
+  .compare-tag{font-family:'Inter',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:8px;}
+  .compare-detail{font-size:13px;line-height:1.5;}
+
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px;}
+  th{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;text-align:left;color:var(--ink-soft);border-bottom:1px solid var(--ink);padding:8px 10px;}
+  td{padding:9px 10px;border-bottom:1px solid var(--paper-line);font-size:12.5px;}
+  td.name{font-weight:500;}
+  tr:last-child td{border-bottom:none;}
+
+  .stamp{display:inline-block;font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border:1.5px solid currentColor;border-radius:3px;}
+  .stamp.high{color:var(--clay);}
+  .stamp.medium{color:var(--amber);}
+  .stamp.low{color:var(--jade);}
+
+  .callout{margin-top:20px;padding:14px 16px;border-left:3px solid var(--jade);background:#EAEFF5;font-size:13px;line-height:1.5;}
+  .callout b{color:var(--jade);}
+
+  ul.lessons{list-style:none;padding:0;margin:0;}
+  ul.lessons li{padding:10px 0;border-bottom:1px solid var(--paper-line);font-size:13px;line-height:1.5;}
+  ul.lessons li:last-child{border-bottom:none;}
+  ul.lessons b{font-family:'Times New Roman',serif;font-weight:600;}
+
+  footer{margin-top:28px;text-align:center;font-family:'Inter',sans-serif;font-size:10.5px;color:var(--ink-soft);}
+  .synthetic-note{text-align:center;font-family:'Inter',sans-serif;font-size:10px;color:var(--ink-soft);margin-top:8px;opacity:.7;}
+  section{margin-bottom:30px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="brand-eyebrow">Case Study 01 · Receivables Operations</div>
+      <h1>Prioritizing Expired Payment Methods</h1>
+    </div>
+    <div class="window-tag">Source: internal accounting platform (live)<br>Review channel: team messaging, human-approved</div>
+  </header>
+
+  <div class="panel-frame">
+
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-label">Account base</div><div class="kpi-value">Recurring wholesale customers</div></div>
+      <div class="kpi"><div class="kpi-label">Targel population</div><div class="kpi-value">Recently active accounts only</div></div>
+      <div class="kpi"><div class="kpi-label">Primary record issue</div><div class="kpi-value">Incomplete information is more common than expired credit cards</div></div>
+      <div class="kpi"><div class="kpi-label">Output</div><div class="kpi-value">Drafted outreach requiring human approval</div></div>
+    </div>
+
+    <section>
+      <h2 class="section">Pipeline Flow</h2>
+      <p class="section-note">Retreives payment records, identifies customers worth contacting, adds the information needed for outreach, and prepares personalized drafts for human review.</p>
+      <div class="flow">
+        <div class="flow-step">Extract card &amp; contact data</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Filter by customer activity</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Enrich with rep &amp; order history</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Route by scenario</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Draft personalized email</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Human review gate</div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section">Filtering Logic</h2>
+      <p class="section-note">Activity-based targeting keeps outreach focused on customers worth the effort.</p>
+      <div class="compare">
+        <div class="compare-card kept">
+          <div class="compare-tag">Kept</div>
+          <div class="compare-name">Customer A</div>
+          <div class="compare-detail">Repeat wholesale customer with recent ordering history. Even if there has not been an order in the last few weeks, maintaining an accurate payment method prevents future friction.</div>
+        </div>
+        <div class="compare-card dropped">
+          <div class="compare-tag">Dropped</div>
+          <div class="compare-name">Customer X</div>
+          <div class="compare-detail">One-time customer with no recent purchasing activity. Updating the payment would likely provide little operational value.</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section">Business Rules</h2>
+      <table>
+        <thead><tr><th>Scenario</th><th>Recipient</th><th>Email Focus</th></tr></thead>
+        <tbody>
+          <tr><td class="name">Card expired, active account</td><td>Sales rep</td><td>Sales rep notified; accounting completes the record update</td></tr>
+          <tr><td class="name">Card info incomplete</td><td>Customer</td><td>Customer receives a simple request to update payment information</td></tr>
+          <tr><td class="name">No rep on file</td><td>AR team</td><td>Internal draft prepared for manual follow-up</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">
+        <b>Human approval gate:</b> every draft is posted to a private review channel before anything reaches a customer. No customer communication is sent automatically — a person approves each batch, and every run leaves a timestamped audit trail of what was found, filtered, and drafted.
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section">Lessons Learned</h2>
+      <ul class="lessons">
+        <li><b>Not every record deserves equal attention. </b> Activity history is a better prioritization signal than simply finding every expired card.</li>
+        <li><b>Technical workflows have organizational constraints. </b> Emails now direct them to the right internal contact instead.</li>
+        <li><b>Contexts belong in the right place. </b> Internal drafts can include operational history; customer communication should stay focused on the immediate request.</li>
+        <li><b>Handle exceptions deliberately.</b> Accounts without an assigned representative still receive a prepared internal draft instead of disappearing from the workflow, so nothing falls through the cracks.</li>
+        <li><b>Timezone-aware date handling</b> avoids miscounting expirations near month boundaries.</li>
+        <li><b>Card-type names are pulled live from the platform</b> rather than hardcoded, so the pipeline stays correct as card programs change.</li>
+      </ul>
+    </section>
+
+  </div>
+  <footer>Automated workflow · scheduled execution · human approval required for customer outreach</footer>
+  <div class="synthetic-note">Anonymized case-study reconstruction — company and customers are fictional or generalized. Structure mirrors original pipeline output.</div>
+</div>
+</body>
+</html>

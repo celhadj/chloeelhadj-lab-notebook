@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Case Study 01 — Inventory Health Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF; --paper-line:rgba(0,0,0,0.09); --ink:#1A1A1A; --ink-soft:#6B6B68;
+    --amber:#8B8B86; --jade:#3D5A80; --clay:#6E2A34; --white-card:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);
+    
+    color:var(--ink);font-family:'Inter',sans-serif;padding:32px 24px 64px;}
+  .wrap{max-width:1040px;margin:0 auto;}
+  header{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--ink);
+    padding-bottom:14px;margin-bottom:22px;flex-wrap:wrap;gap:12px;}
+  .brand-eyebrow{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px;}
+  h1{font-family:'Times New Roman',serif;font-weight:600;font-size:32px;margin:0;letter-spacing:-0.01em;}
+  .window-tag{font-family:'Inter',sans-serif;font-size:12px;color:var(--ink-soft);text-align:right;}
+  .panel-frame{border:none;border-top:1px solid var(--ink-soft);padding:28px 0;}
+  .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:28px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);}
+  .kpi{padding:16px 14px;border-right:1px solid var(--paper-line);}
+  .kpi:last-child{border-right:none;}
+  .kpi-label{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;}
+  .kpi-value{font-family:'Times New Roman',serif;font-size:15.5px;font-weight:600;line-height:1.3;}
+  h2.section{font-family:'Times New Roman',serif;font-size:19px;font-weight:600;margin:0 0 4px;}
+  .section-note{font-size:12.5px;color:var(--ink-soft);margin:0 0 16px;}
+  section{margin-bottom:30px;}
+
+  .dash-cards{display:flex;gap:14px;}
+  .dash-card{flex:1;border:1px solid var(--paper-line);padding:16px;}
+  .dash-card-title{font-family:'Times New Roman',serif;font-weight:600;font-size:15px;margin-bottom:6px;}
+  .dash-card-audience{font-family:'Inter',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:8px;}
+  .dash-card-detail{font-size:12.5px;line-height:1.5;color:var(--ink-soft);}
+
+  .finding-cards{display:flex;gap:16px;}
+  .finding-card{flex:1;border:1px solid var(--paper-line);padding:16px;}
+  .finding-card.critical{border-left:4px solid var(--clay);}
+  .finding-card.healthy{border-left:4px solid var(--jade);}
+  .finding-name{font-family:'Times New Roman',serif;font-weight:600;font-size:16px;margin-bottom:8px;}
+  .finding-row{font-size:12.5px;margin-bottom:4px;}
+  .finding-row b{font-family:'Inter',sans-serif;font-weight:600;}
+
+  .stamp{display:inline-block;font-family:'Inter',sans-serif;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border:1.5px solid currentColor;border-radius:3px;}
+  .stamp.high{color:var(--clay);}
+  .stamp.medium{color:var(--amber);}
+  .stamp.low{color:var(--jade);}
+
+  ul.lessons{list-style:none;padding:0;margin:0;}
+  ul.lessons li{padding:10px 0;border-bottom:1px solid var(--paper-line);font-size:13px;line-height:1.5;}
+  ul.lessons li:last-child{border-bottom:none;}
+  ul.lessons b{font-family:'Times New Roman',serif;font-weight:600;}
+
+  .callout{margin-top:14px;padding:14px 16px;border-left:3px solid var(--jade);background:#EAEFF5;font-size:13px;line-height:1.5;}
+  .callout b{color:var(--jade);}
+
+  footer{margin-top:28px;text-align:center;font-family:'Inter',sans-serif;font-size:10.5px;color:var(--ink-soft);}
+  .synthetic-note{text-align:center;font-family:'Inter',sans-serif;font-size:10px;color:var(--ink-soft);margin-top:8px;opacity:.7;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="brand-eyebrow">Case Study 01 · Understanding Inventory Stockouts</div>
+      <h1>Risk &amp; Replenishment Forecast</h1>
+    </div>
+    <div class="window-tag">Source: internal accounting platform (live)<br>Forecast horizon: near-, mid-, and longer-term</div>
+  </header>
+
+  <div class="panel-frame">
+
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-label">Scope</div><div class="kpi-value">Finished goods monitored</div></div>
+      <div class="kpi"><div class="kpi-label">Health split</div><div class="kpi-value">Most products healthy; a small set requires immediate attention</div></div>
+      <div class="kpi"><div class="kpi-label">Forecast horizon</div><div class="kpi-value">Short-, medium-, and longer-term projections</div></div>
+      <div class="kpi"><div class="kpi-label">Root cause clarity</div><div class="kpi-value">Separates packaging and ingredient bottlenecks</div></div>
+    </div>
+
+    <section>
+      <h2 class="section">Three Views, Three Audiences</h2>
+      <div class="dash-cards">
+        <div class="dash-card">
+          <div class="dash-card-title">Daily Health Check</div>
+          <div class="dash-card-audience">Anyone · quick glance</div>
+          <div class="dash-card-detail">Rolling summary of inventory  health, refreshed on every run.</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-title">Reorder Dashboard</div>
+          <div class="dash-card-audience">Procurement / restock team</div>
+          <div class="dash-card-detail">Reorder recommendations ranked by urgency, with open purchase orders and expected delivery timings.</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-title">Root Cause Dashboard</div>
+          <div class="dash-card-audience">Supply chain analysis</div>
+          <div class="dash-card-detail">Groups historical stock-outs by likely cause to identify recurring operational bottlenecks (packaging, ingredients, production, etc.).</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section">Critical Findings</h2>
+      <div class="finding-cards">
+        <div class="finding-card critical">
+          <div class="finding-name">SKU A</div>
+          <div class="finding-row"><b>Priority:</b> Critical</div>
+          <div class="finding-row"><b>Reason:</b> Packaging shortage</div>
+          <div class="finding-row"><b>Risk:</b> <span class="stamp high">High</span></div>
+          <div class="finding-row"><b>Predicted stock-out:</b> Very soon</div>
+          <div class="finding-row"><b>Action:</b> Expedite packaging reorder</div>
+        </div>
+        <div class="finding-card healthy">
+          <div class="finding-name">Product B</div>
+          <div class="finding-row"><b>Priority:</b> Healthy</div>
+          <div class="finding-row"><b>Reason:</b> Well-stocked on both packaging and ingredients</div>
+          <div class="finding-row"><b>Risk:</b> <span class="stamp low">Low</span></div>
+          <div class="finding-row"><b>Status:</b> Monitor only</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section">Key Decisions &amp; Learnings</h2>
+      <ul class="lessons">
+        <li><b>Bill-of-materials data wasn't accessible.</b> Without access to a bill of materials, finished goods were linked to packaging through standardized product names. The approach covered most products while remaining easy to audit.</li>
+        <li><b>Seasonality was identified from purchasing patterns rather than predefined product lists.</b> A concentration test — checking whether a few months dominate total volume — separates seasonal items from steady sellers automatically.</li>
+        <li><b>Receiving history was used as a proxy where consumption data was not available,</b> since sales-side detail wasn't fully available; conservative estimates avoid over-ordering.</li>
+        <li><b>Purchase order status alone was validated against records to distinguish delayed deliveries from completed orders.</b> Cross-referencing order lines against actual receipts correctly identifies over-delivered vs. short-shipped items.</li>
+        <li><b>A "committed inventory" flag proved unreliable,</b> showing the committed inventory field was excluded after testing showed it frequently overstated inventory already allocated.</li>
+      </ul>
+    </section>
+
+    <div class="callout">
+      <b>Why this matters:</b> The challenge was not predicting demand, it was determining why an item was at risk. Separating packaging shortages from ingredient constraints made it possible to recommend different actions instead of treating every stock-out as the same problem.
+    </div>
+
+  </div>
+  <footer>Four-layer pipeline · daily automated runs · full row-level lineage</footer>
+  <div class="synthetic-note">Anonymized case-study reconstruction — company and products are fictional or generalized. Structure mirrors original pipeline output.</div>
+</div>
+</body>
+</html>

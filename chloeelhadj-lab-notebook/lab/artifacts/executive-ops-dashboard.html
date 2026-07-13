@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Case Study 01 — Executive Operations Summary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF; --paper-line:rgba(0,0,0,0.09); --ink:#1A1A1A; --ink-soft:#6B6B68;
+    --amber:#8B8B86; --jade:#3D5A80; --clay:#6E2A34; --white-card:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);
+    
+    color:var(--ink);font-family:'Inter',sans-serif;padding:32px 24px 64px;}
+  .wrap{max-width:1040px;margin:0 auto;}
+  header{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--ink);
+    padding-bottom:14px;margin-bottom:22px;flex-wrap:wrap;gap:12px;}
+  .brand-eyebrow{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px;}
+  h1{font-family:'Times New Roman',serif;font-weight:600;font-size:32px;margin:0;letter-spacing:-0.01em;}
+  .window-tag{font-family:'Inter',sans-serif;font-size:12px;color:var(--ink-soft);text-align:right;}
+  .panel-frame{border:none;border-top:1px solid var(--ink-soft);padding:28px 0;}
+  h2.section{font-family:'Times New Roman',serif;font-size:19px;font-weight:600;margin:0 0 4px;}
+  .section-note{font-size:12.5px;color:var(--ink-soft);margin:0 0 16px;}
+  section{margin-bottom:30px;}
+
+  .status-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .status-card{border:1px solid var(--paper-line);padding:18px 14px;text-align:center;}
+  .status-facet{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px;}
+  .status-desc{font-size:12px;color:var(--ink-soft);margin-top:8px;line-height:1.4;}
+
+  .stamp{display:inline-block;font-family:'Inter',sans-serif;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 14px;border:1.5px solid currentColor;border-radius:3px;}
+  .stamp.high{color:var(--clay);}
+  .stamp.normal{color:var(--jade);}
+  .stamp.low{color:var(--amber);}
+
+  ul.lessons{list-style:none;padding:0;margin:0;}
+  ul.lessons li{padding:10px 0;border-bottom:1px solid var(--paper-line);font-size:13px;line-height:1.5;}
+  ul.lessons li:last-child{border-bottom:none;}
+  ul.lessons b{font-family:'Times New Roman',serif;font-weight:600;}
+
+  .callout{margin-top:14px;padding:14px 16px;border-left:3px solid var(--clay);background:#F5EBEC;font-size:13px;line-height:1.5;}
+  .callout b{color:var(--clay);}
+
+  .flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:8px;}
+  .flow-step{border:1px solid var(--paper-line);background:var(--paper);padding:10px 12px;font-family:'Inter',sans-serif;font-size:11px;text-align:center;flex:1;min-width:110px;}
+  .flow-arrow{font-size:16px;color:var(--ink-soft);}
+
+  footer{margin-top:28px;text-align:center;font-family:'Inter',sans-serif;font-size:10.5px;color:var(--ink-soft);}
+  .synthetic-note{text-align:center;font-family:'Inter',sans-serif;font-size:10px;color:var(--ink-soft);margin-top:8px;opacity:.7;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="brand-eyebrow">Case Study 01 · Executive View</div>
+      <h1>Executive Operations Dashboard</h1>
+    </div>
+    <div class="window-tag">Live, direct-from-source<br>Source: internal accounting platform</div>
+  </header>
+
+  <div class="panel-frame">
+
+    <section>
+      <h2 class="section">Four Aspects, One View</h2>
+      <p class="section-note">A consolidated view of four operational areas, updates directly from the source system on each run.</p>
+      <div class="status-grid">
+        <div class="status-card">
+          <div class="status-facet">AR Credits</div>
+          <span class="stamp high">High</span>
+          <div class="status-desc">Elevated exposure in the near-term credit window</div>
+        </div>
+        <div class="status-card">
+          <div class="status-facet">Inventory</div>
+          <span class="stamp normal">Normal</span>
+          <div class="status-desc">No critical items; well-stocked overall</div>
+        </div>
+        <div class="status-card">
+          <div class="status-facet">Sales</div>
+          <span class="stamp low">Limited</span>
+          <div class="status-desc">Limited to summary-level reporting; line-item sales data was not available</div>
+        </div>
+        <div class="status-card">
+          <div class="status-facet">Payments</div>
+          <span class="stamp normal">Normal</span>
+          <div class="status-desc">No compliance issues identified</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section">Architecture</h2>
+      <div class="flow">
+        <div class="flow-step">Source Systems</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Data Systems</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Data Validation</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Executive Dashboard</div>
+      </div>
+      <p class="section-note" style="margin-top:10px;">Every extractor queries the source system directly on each run — no cached or stale metrics.</p>
+    </section>
+
+    <section>
+      <h2 class="section">Key Decisions</h2>
+      <ul class="lessons">
+        <li><b>Removed the AR aging module after repeated reliability issues. A smaller dashboard built on trustworthy, validated data is more
+          useful than a larger one built on uncertain data.</li>
+        <li><b>Reads directly from the source system instead of cached outputs to ensure every run reflects current data</b> rather than relying on cached pipeline outputs, for freshness on every run.</li>
+        <li><b>Resolve a data-binding issue</b> so the live dashboard renders correctly instead of showing blank values.</li>
+        <li><b>Kept the sales module intentionally limited until line-item data becomes available.</li>
+      </ul>
+    </section>
+
+    <div class="callout">
+      <b>Top finding:</b> a single account represents the large majority of total near-term credit risk exposure — a concentration that stands out clearly against every other account and warrants immediate attention from AR management.
+    </div>
+
+  </div>
+  <footer>multi-stage pipeline · live queries · row-level lineage</footer>
+  <div class="synthetic-note">Anonymized case-study reconstruction — company and figures are fictional or generalized. Structure mirrors original pipeline output.</div>
+</div>
+</body>
+</html>
