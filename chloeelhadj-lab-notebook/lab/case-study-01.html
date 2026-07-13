@@ -122,7 +122,7 @@
 
 <header class="site">
   <div class="nav-inner">
-    <a href="../index.html" class="brand">the lab notebook</a>
+    <a href="../index.html" class="brand">Lab notebook</a>
     <button class="nav-toggle" aria-label="Toggle menu">Menu</button>
     <nav class="links">
       <a href="../index.html">Home</a>
@@ -135,28 +135,27 @@
 <main class="wrap">
 
   <section class="reveal">
-    <p class="label">Entry 01 &middot; Jul 2026</p>
-    <h1>Case Study 01 &mdash; AI Implementation in Consumer Goods</h1>
+    <p class="label">Entry 01 &middot; June & July 2026</p>
+    <h1>AI Implementation in Consumer Goods</h1>
     <p class="lede" style="margin-top:20px;">
-      During a summer internship at a family-owned consumer goods company, I was tasked with identifying operational
-      bottlenecks across inventory, accounting, and production. Rather than treating them as isolated problems, I 
-      explored whether AI could simplify repetitive work while leaving important decisions in human hands.
-      This page documents five small implementation projects. Each focuses less on the technology itself and more on 
-      the reasoning behind it: the problem, the design decisions, and what I learned. 
+      During my summer internship, I was tasked with identifying operational bottlenecks across inventory, accounting, 
+      and production. I explored whether AI could simplify repetitive work while leaving important decisions in human 
+      hands. This page documents five small implementation projects. Each focuses less on the technology itself and more 
+      on the reasoning behind it: the problem, the design decisions, and what I learned. 
       Please note: company names, data, and identifying details have been intentionally anonymized.
     </p>
   </section>
 
   <section class="reveal pipeline-block">
-    <p class="label slate">01 &middot; Recovering Missing Credit Memo Categories</p>
+    <p class="label slate">Project 1 &middot; Recovering Missing Credit Memo Categories</p>
     <hr class="rule">
 
     <p class="pipeline-desc">
-      Across the company's delivery routes, credit memos had no single view
-      connecting which clients, which drivers, and which reason codes were
-      actually driving them. Along the way, several memos turned out to have 
-      no reason code at all &mdash; recovered from free-text notes with a full 
-      confidence-scored audit trail.
+      Across the company's delivery routes, credit memos had no single view that
+      connected which clients,  drivers, and reason codes were actually driving
+      them. After the first data extraction, it was revealed that several memos 
+      turned out to have no reason code at all. For the credit memos with no reason
+      code, I pulled data from free-text notes with a full confidence-scored audit trail.
     </p>
 
     <details class="dashboard-toggle">
@@ -169,73 +168,42 @@
     <details class="breakdown">
       <summary>Read full breakdown</summary>
       <div class="card">
-        <p><strong>The problem:</strong> credit memos issued across the
+        <p><strong>Identified Problem:</strong> Credit memos issued across the
         company's delivery routes had no single view connecting which
         clients, which drivers, and which reason codes were actually
-        causing them &mdash; so patterns were invisible route by route.</p>
-        <p><strong>What I built:</strong> an internal tool matching credit 
-        memos to invoices by customer and item (leaning on the platform's built-in
-        document references where available), intentionally limited to the last quarter 
-        as a first pass toward eventually covering all historical data. It
-        revealed which clients, drivers, and reason codes &mdash; damaged
-        item, picking error, customer/courier return &mdash; were most
-        linked to credit memos across each route.</p>
-        <p><strong>Key discovery:</strong> while reviewing the reason-code
+        causing them, so patterns were invisible route by route.</p>
+        <p><strong>What I built:</strong> An internal tool matching credit 
+        memos to invoices by customer, delivery route, and items that was 
+        intentionally limited to the last quarter (a first pass toward 
+        eventually covering all historical data). This project revealed (1) 
+        trends by month, (2) which customers are affected most by each reason
+        (e.g., damaged goods, picking error, customer returns), (3) vendors 
+        causing the most errors, (4) risk scores by reason, and (5) percent and
+        count of credits per reason.</p>
+        <p><strong>Key Discovery:</strong> While reviewing the reason-code
         data, I found a meaningful subset of credit memos had no reason code
-        recorded at all &mdash; just free-text notes. That became a second
-        layer of the project: a confidence-scored tool that recovered a
-        likely category from the notes, kept in a separate "inferred" view
+        recorded at all, just free-text notes. This became a second layer of 
+        the project: a confidence-scored tool that created a "likely" category
+        from the notes. This category was created in a separate "inferred" window
         from verified codes so nothing looked more certain than it was, with
         a full keyword audit trail behind every inferred category.</p>
-        <p><strong>What I learned:</strong> keeping "verified" and "inferred"
+        <p><strong>What I learned:</strong> Keeping "verified" and "inferred"
         as two separate views, instead of blending them into one number,
         mattered more than the accuracy of the estimation itself. A
-        confident-looking blended total would have been more dangerous than
-        an honest, lower-confidence estimate.</p>
+        confident-looking, mixed total would have been more dangerous than
+        a clear, lower-confidence estimate.</p>
       </div>
     </details>
   </section>
 
   <section class="reveal pipeline-block">
-    <p class="label slate">02 &middot; Prioritizing Expired Payment Methods</p>
+    <p class="label slate">Project 2 &middot; Prioritizing Expired Payment Methods</p>
     <hr class="rule">
 
-    <figure class="diagram" data-diagram data-before-note="Every flagged account gets the same alert, regardless of whether it still buys anything." data-after-note="Only active, repeat entities get outreach — drafted, then held for a person to approve.">
-      <div class="diagram-toolbar">
-        <button class="state-btn active" data-state="before">Before</button>
-        <button class="state-btn" data-state="after">After</button>
-      </div>
-      <svg viewBox="0 0 640 160" xmlns="http://www.w3.org/2000/svg">
-        <rect x="20" y="50" width="130" height="46" fill="none" stroke="#14181C" stroke-width="1"/>
-        <text x="85" y="78" text-anchor="middle" font-family="Inter" font-size="12" fill="#14181C">Card flagged</text>
-
-        <line x1="150" y1="73" x2="184" y2="73" stroke="#14181C" stroke-width="1"/>
-        <polygon points="184,68 194,73 184,78" fill="#14181C"/>
-
-        <rect class="diagram-step" data-highlight="true" x="196" y="50" width="130" height="46" fill="none" stroke="#14181C" stroke-width="1.4"/>
-        <text class="diagram-step" data-label-before="Alert everyone" data-label-after="Filter to active accounts" x="261" y="78" text-anchor="middle" font-family="Inter" font-size="11.5" fill="#14181C">Alert everyone</text>
-
-        <line x1="326" y1="73" x2="360" y2="73" stroke="#14181C" stroke-width="1"/>
-        <polygon points="360,68 370,73 360,78" fill="#14181C"/>
-
-        <rect x="372" y="50" width="130" height="46" fill="none" stroke="#14181C" stroke-width="1"/>
-        <text x="437" y="78" text-anchor="middle" font-family="Inter" font-size="12" fill="#14181C">Draft outreach</text>
-
-        <line x1="502" y1="73" x2="536" y2="73" stroke="#14181C" stroke-width="1"/>
-        <polygon points="536,68 546,73 536,78" fill="#14181C"/>
-
-        <rect x="548" y="50" width="72" height="46" fill="none" stroke="#14181C" stroke-width="1"/>
-        <text x="584" y="72" text-anchor="middle" font-family="Inter" font-size="10.5" fill="#14181C">Human</text>
-        <text x="584" y="86" text-anchor="middle" font-family="Inter" font-size="10.5" fill="#14181C">approves</text>
-      </svg>
-      <div class="step-note">Every flagged account gets the same alert, regardless of whether it still buys anything.</div>
-      <figcaption class="frame-caption">Click Before / After &mdash; the filtering step is the only thing that changes.</figcaption>
-    </figure>
-
     <p class="pipeline-desc">
-      Expired cards were only ever caught reactively &mdash; after a payment
+      Expired cards were only ever caught reactively, after a payment had
       already failed. This system flips that: it proactively flags cards
-      approaching expiration, drafts outreach before the payment is due, and
+      approaching expiration, drafts outreach immediately, and
       logs every alert and customer response back to their profile.
     </p>
 
@@ -249,118 +217,38 @@
     <details class="breakdown">
       <summary>Read full breakdown</summary>
       <div class="card">
-        <p><strong>The problem:</strong> expired cards were only caught through
-        manual reconciliation &mdash; by the time anyone noticed, a payment
-        attempt had already failed, and staff had to reach out, wait for a
-        response, and update the card before it could be reprocessed.</p>
-        <p><strong>What I built:</strong> a dashboard that proactively
-        flagged accounts with cards approaching expiration &mdash; not just
-        already-expired ones &mdash; filtered to active, repeat accounts,
-        drafted outreach tailored to who needed to see it (relationship
-        manager, account, or finance team) ahead of the payment due date, and
-        logged every alert and the customer's response back to their profile.
-        Every draft still went through a private review channel for human
-        approval before anything went out.</p>
-        <p><strong>What I learned:</strong> the real design decision wasn't the
-        extraction, it was the filter &mdash; a smaller, correctly-targeted list beat a
-        longer, noisier one. I also learned mid-build that relationship manager didn't have 
+        <p><strong>The Problem:</strong> Expired cards were only caught through
+        manual reconciliation. A payment attempt had already failed, staff had to 
+        reach out, wait for a esponse, and update the card before the invoice could 
+        be reprocessed.</p>
+        <p><strong>What I Built:</strong> A dashboard that proactively
+        flagged accounts with cards approaching expiration, not just
+        already-expired ones. These findings were filtered to active 
+        accounts and repeat accounts. The AI tool then drafted outreach 
+        tailored to who needed to see it (relationship manager, account, 
+        or finance team) ahead of the payment due date, and logged every 
+        alert and the customer's response back to their profile. Every
+        draft went through a private review channel for human approval before
+        anything went out.</p>
+        <p><strong>What I Learned:</strong> The real design decision wasn't the
+        extraction, it was the filter. Having a smaller, correctly-targeted list 
+        beat a longer, noisier one. I also learned mid-build that relationship managers didn't have 
         direct system access, which changed who the alerts actually needed to be addressed to.</p>
       </div>
     </details>
   </section>
 
   <section class="reveal pipeline-block">
-    <p class="label slate">03 &middot; Understanding Inventory Stockouts</p>
+    <p class="label slate">Project 3 &middot; Finance Operations Dashboard</p>
     <hr class="rule">
 
     <p class="pipeline-desc">
-      When a product family went out of stock, nobody could quickly tell
-      whether it was a packaging or component shortage. An anomaly detector
-      built to catch real sales gaps in tin finished-goods data uncovered
-      something else first: its own false positives, caused by a truncated
-      data pull.
-    </p>
-
-    <details class="dashboard-toggle">
-      <summary>View dashboards</summary>
-      <div class="artifact-pair">
-        <div>
-          <p class="artifact-sublabel">Demand impact</p>
-          <div class="artifact-frame">
-            <iframe src="artifacts/stockout-demand-dashboard.html" title="Understanding Inventory Stockouts — demand impact dashboard" height="1500" loading="lazy"></iframe>
-          </div>
-        </div>
-        <div>
-          <p class="artifact-sublabel">Risk &amp; replenishment forecast</p>
-          <div class="artifact-frame">
-            <iframe src="artifacts/inventory-risk-dashboard.html" title="Understanding Inventory Stockouts — risk and replenishment forecast dashboard" height="1050" loading="lazy"></iframe>
-          </div>
-        </div>
-      </div>
-    </details>
-
-    <details class="breakdown">
-      <summary>Read full breakdown</summary>
-      <div class="card">
-        <p><strong>The problem:</strong> nobody had a systematic way to tell
-        whether an unusual dip in sales for a finished-goods tin product was
-        a real stock-out or just noise in the data.</p>
-        <p><strong>Phase 1 &mdash; initial detection:</strong> I built an
-        anomaly detector scanning 30 days of invoice data for tin products,
-        watching for sales gaps (7+ consecutive days with no invoices),
-        customer concentration (over 80% of revenue from one buyer), and
-        cadence drops (week-over-week quantity drops over 60%). It flagged
-        64 anomalies &mdash; 62 concentration flags and 2 sales gaps.</p>
-        <p><strong>Phase 2 &mdash; narrowing to what mattered:</strong> most
-        of the concentration flags turned out to be expected &mdash;
-        private-label items are inherently single-customer. I focused on the
-        two sales-gap findings as the more actionable signal and built a
-        60-day daily timeline to visualize them.</p>
-        <p><strong>Phase 3 &mdash; the discovery that mattered:</strong> to
-        confirm these were real stock-outs, I pulled inventory levels for
-        the gap periods. Direct queries against the source platform showed
-        invoices were actually flowing continuously the whole time &mdash;
-        both flagged gaps were false positives, caused by a bulk 30-day data
-        pull that had silently truncated and missed records for those
-        specific items.</p>
-        <p><strong>Phase 4 &mdash; rebuilding with verification:</strong> I
-        rebuilt the prototype to properly section the full dataset (500K+
-        line items), detect gaps from the corrected data, then verify every
-        flagged gap directly against the source platform's invoices and
-        delivery notes before calling it real, enriching confirmed gaps with
-        current warehouse stock and shipping activity.</p>
-        <p><strong>The replenishment side:</strong> alongside the anomaly
-        work, I added one master summary tab &mdash; not a rebuild of the
-        existing workbook &mdash; pulling stock levels, burn rate (from
-        production order history and purchase receipt patterns), and what's
-        already on order from vendors into a single filterable view, sorted
-        by urgency and filterable by item group (tins, labels, boxes). Items
-        are flagged CRITICAL at two months or less of supply remaining,
-        WARNING at four months or less, and OK otherwise &mdash; so a planner
-        walking into a purchasing meeting has the full position without
-        clicking through multiple sheets.</p>
-        <p><strong>What I learned:</strong> an anomaly detector is only as
-        trustworthy as the data feeding it. The two flags that looked most
-        "real" on the first pass turned out to be an artifact of truncated
-        data, not an actual business signal &mdash; building in direct
-        verification against source data, rather than trusting the first
-        pass, was the actual lesson of this project. On the replenishment
-        side, the fix didn't need to be a rebuild: adding one clear summary
-        view mattered more than restructuring anything that already worked.</p>
-      </div>
-    </details>
-  </section>
-
-  <section class="reveal pipeline-block">
-    <p class="label slate">04 &middot; Finance Operations Dashboard</p>
-    <hr class="rule">
-
-    <p class="pipeline-desc">
-      The data lived in an internal accounting platform, but in a form that
-      only supported sending payment-reminder emails &mdash; no patterned or
-      cross-referenced view of who was actually driving the tail. This
-      pipeline built that view: aging buckets, which accounts drive the
-      tail, and which accounts trend toward withholding payment over time.
+      Data of outstanding invoice payments lived in an internal accounting platform, 
+      but in a form that only supported sending payment-reminder emails; there was no 
+      patterned or cross-referenced view of who was actually driving the tail. This pipeline
+      created a consolidated dashboard that allowed for the quick identification of
+      aging buckets, which accounts drive the tail, and which accounts trend toward 
+      withholding payment over time.
     </p>
 
     <details class="dashboard-toggle">
@@ -373,35 +261,34 @@
     <details class="breakdown">
       <summary>Read full breakdown</summary>
       <div class="card">
-        <p><strong>The problem:</strong> AR data was readily available in
+        <p><strong>The Problem:</strong> AR data was readily available in
         the company's internal accounting platform, but structured in a way
-        that only supported sending payment reminders &mdash; no patterned
+        that primarily supported sending payment reminders, no patterned
         or cross-referenced analysis of who was actually driving overdue
         balances, or who kept doing it.</p>
-        <p><strong>What I built:</strong> a live AR health check that aged
-        every outstanding invoice into buckets (current, 30, 60, 90, 120+
-        days), aggregated by account, flagged which accounts were driving a
-        disproportionate share of the tail, and separately flagged accounts
-        that trend toward withholding payment over time &mdash; not just
-        accounts that happen to be overdue right now. A composite priority
-        score blends account size, invoice age, and payment-history pattern
-        into one ranked view.</p>
-        <p><strong>Key insight:</strong> concentration analysis surfaced
-        risk that was invisible when reviewing individual invoices in
-        isolation &mdash; a handful of accounts drove a disproportionate
-        share of total exposure, and some of them were repeat offenders
+        <p><strong>What I Built:</strong> A live AR health check that aged
+        every outstanding invoice into buckets (live, 30, 60, 90, 120+
+        days) aggregated by account. It also flagged which accounts were driving
+        a disproportionate share of the tail, and which accounts trended toward
+        withholding payment over time. Moreover, a multi-factor priority score 
+        combined the AR contribution %, days overdue, and payment behavior patterns 
+        for data-driven collection decisions.</p>
+        <p><strong>Key Insight:</strong> A concentrated analysis surfaced a
+        risk that has been invisible when reviewing individual invoices in
+        isolation: a handful of accounts drove a disproportionate share of
+        total exposure, and some of them were repeat offenders
         rather than one-off late payments.</p>
       </div>
     </details>
   </section>
 
   <section class="reveal pipeline-block">
-    <p class="label slate">05 &middot; Executive Operations Dashboard</p>
+    <p class="label slate">Project 4 &middot; Executive Operations Dashboard</p>
     <hr class="rule">
 
     <p class="pipeline-desc">
       Leadership had no single bird's-eye view spanning AR, deliveries, and
-      inventory &mdash; each lived in a different report, updated on a
+      inventory. Each lived in a different report and were updated on a
       different schedule. This dashboard pulled live data across all of
       them at once.
     </p>
@@ -416,22 +303,23 @@
     <details class="breakdown">
       <summary>Read full breakdown</summary>
       <div class="card">
-        <p><strong>The problem:</strong> leadership had no single live view
-        spanning AR, deliveries, and inventory &mdash; each lived in a
+        <p><strong>The Problem:</strong> Leadership had no single live view
+        spanning AR, deliveries, and inventory. Each lived in a
         different report, updated on a different schedule.</p>
-        <p><strong>What I built:</strong> the scope grew during the build to
-        four live facets &mdash; AR credits, inventory, sales, and payments
-        &mdash; pulling directly from source on every run.</p>
-        <p><strong>What I learned:</strong> partway through, one data facet turned out
-        to be unreliable. Shipping four dependable views instead of five including one
-        broken one was itself a real product decision, not just a technical fallback
-        &mdash; a smaller, trustworthy dashboard beats a comprehensive, unreliable one.</p>
+        <p><strong>What I Built:</strong> Data from four live aspects of the company, 
+        AR credits, inventory, sales, and payments are now pulled and organized within
+        a prototype on every run of this dashboard.</p>
+        <p><strong>What I Learned:</strong> Partway through this project, one category of
+        extracted data turned out to be unreliable. Shipping four dependable views instead 
+        of five, which would have included one the broken one, was itself a real product decision, 
+        not just a technical fallback. Once again, I was taught that a smaller, trustworthy 
+        dashboard beats a comprehensive, unreliable one.</p>
       </div>
     </details>
   </section>
 
   <section class="reveal">
-    <p class="label slate">The pattern across all five</p>
+    <p class="label slate">The pattern across all four</p>
     <hr class="rule">
     <p>
       None of these projects were ultimately constrained by data extraction. Modern 
