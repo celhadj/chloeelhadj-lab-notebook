@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Recommendation Systems Don't Understand Taste</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+  .pipeline-block { margin-bottom: 10px; }
+  .artifact-frame {
+    border: none; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    overflow: hidden; margin: 14px 0;
+  }
+  .artifact-frame iframe { display: block; width: 100%; border: none; background: #FFFFFF; }
+  .pipeline-desc { margin: 10px 0 14px; }
+  details.dashboard-toggle, details.breakdown { margin: 4px 0 2px; }
+  details.dashboard-toggle summary, details.breakdown summary {
+    cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 13px;
+    letter-spacing: 0.01em; padding: 8px 0; list-style: none; display: flex; align-items: center; gap: 6px;
+  }
+  details.dashboard-toggle summary { color: var(--navy); }
+  details.breakdown summary { color: var(--ink); }
+  details.dashboard-toggle summary::-webkit-details-marker, details.breakdown summary::-webkit-details-marker { display: none; }
+  details.dashboard-toggle summary::before, details.breakdown summary::before {
+    content: "+"; display: inline-block; font-size: 15px; transition: transform 0.15s ease;
+  }
+  details.dashboard-toggle[open] summary::before, details.breakdown[open] summary::before { transform: rotate(45deg); }
+  details.dashboard-toggle .artifact-frame { margin-top: 10px; }
+  details.breakdown .card { margin-top: 10px; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav-inner">
+    <a href="../index.html" class="brand">Lab notebook</a>
+    <button class="nav-toggle" aria-label="Toggle menu">Menu</button>
+    <nav class="links">
+      <a href="../index.html">Home</a>
+      <a href="../lab.html" class="active">Lab</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="reveal">
+    <p class="label">Entry 02 &middot; Jul 2026</p>
+    <h1>Case Study 02 &mdash; Why Recommendation Systems Don't Understand Taste</h1>
+    <p class="lede" style="margin-top:20px;">
+      Recommendation systems can predict what you'll listen to, but rarely ask why you actually love something.
+      This project investigates whether a short conversation &mdash; asking a listener what draws them to a song,
+      rather than assuming their taste from behavior or audio features alone &mdash; produces a recommendation
+      the listener recognizes as accurate. The prototype below is the current test of that idea.
+    </p>
+  </section>
+
+  <section class="reveal pipeline-block">
+    <p class="label slate">The hypothesis</p>
+    <hr class="rule">
+    <p class="pipeline-desc">
+      People often know why they love a song. Most recommendation systems never ask &mdash; they infer taste from
+      listening behavior or acoustic similarity instead. Large language models make it possible to have a short
+      conversation before recommending anything at all. This prototype tests whether that conversation produces
+      an understanding of a listener's taste that the listener actually recognizes as their own.
+    </p>
+  </section>
+
+  <section class="reveal pipeline-block">
+    <p class="label slate">The prototype</p>
+    <hr class="rule">
+    <p class="pipeline-desc">
+      A three-screen interaction: pick a song, answer a short adaptive interview (three to six questions, each one
+      generated from what was just said rather than a fixed form), then confirm or edit an AI-written "understanding
+      statement" before any recommendation is generated. Recommendations are produced only from the confirmed
+      statement, each tied explicitly to the part of it they match.
+    </p>
+
+    <details class="dashboard-toggle">
+      <summary>Open the prototype</summary>
+      <div class="artifact-frame">
+        <iframe src="projects/taste-interview-prototype.html" title="Taste Interview prototype" height="900" loading="lazy"></iframe>
+      </div>
+    </details>
+
+    <details class="breakdown">
+      <summary>Read full breakdown</summary>
+      <div class="card">
+        <p><strong>The problem:</strong> existing recommendation systems begin with the song, not the listener &mdash;
+        collaborative filtering infers taste from behavioral patterns across many users, content-based filtering
+        infers it from measurable audio properties. Neither asks a listener to explain themselves, and neither can
+        represent a reason a listener would recognize as their own.</p>
+        <p><strong>What I built:</strong> a conversational interaction model. The system opens with one fixed
+        question, then generates every subsequent question live from the conversation so far, deciding for itself
+        when it has enough to proceed (between three and six questions). It then writes a short understanding
+        statement in its own words, which the listener can edit freely before confirming &mdash; recommendations are
+        generated only from whatever text is confirmed, never from the AI's first draft directly.</p>
+        <p><strong>What changed along the way:</strong> the project originally became an increasingly detailed
+        ontology of musical taste &mdash; ten to twelve dimensions, evidence-grounded concepts, confidence scores,
+        an ontology-refinement tool. That work surfaced real methodological insight, but it was answering a
+        different question than the one this project started with: not "can taste be represented richly?" but
+        "does asking a listener help a system understand them better than assuming does?" The ontology was never
+        actually tested against that question, because every version of it was single-shot &mdash; one description
+        in, one interpretation out. This conversational redesign is the first version that actually tests it.</p>
+        <p><strong>What I learned:</strong> the clearest signal this design produces is how much a listener has to
+        edit the AI's understanding statement before confirming it. Heavy edits mean the conversation didn't work;
+        light edits mean it did. That's a simpler, more honest measure of success than anything the ontology work
+        produced, and it fell directly out of choosing this interaction pattern rather than out of any additional
+        engineering.</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="reveal">
+    <p class="label slate">What this project taught me</p>
+    <hr class="rule">
+    <div class="tags" style="font-size:13px; line-height:2;">
+      qualitative coding &middot; conversational AI design &middot; human-in-the-loop confirmation &middot;
+      recommendation system paradigms &middot; research question discipline &middot; knowing when to abandon
+      work that answers the wrong question
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    &copy; 2026 Chloe El Hadj &mdash;
+    <a href="../index.html">home</a> &middot; <a href="../lab.html">lab index</a>
+  </div>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>
