@@ -49,32 +49,32 @@
     <p class="label">Entry 02 &middot; Jul 2026</p>
     <h1>Case Study 02 &mdash; Why Recommendation Systems Don't Understand Taste</h1>
     <p class="lede" style="margin-top:20px;">
-      Recommendation systems can predict what you'll listen to, but rarely ask why you actually love something.
-      This project investigates whether a short conversation &mdash; asking a listener what draws them to a song,
-      rather than assuming their taste from behavior or audio features alone &mdash; produces a recommendation
-      the listener recognizes as accurate. The prototype below is the current test of that idea.
+      Recommendation systems can predict what you are likely to listen to, or identify patterns in what you enjoy listening to,
+      but they rarely ask why you actually love something. This project investigates whether a short conversation, asking a listener
+      what draws them to a song, rather than assuming their taste from behavior features alone, can produce recommendations that feel
+      more personally meaningful and accurate. The prototype below is the current test of that idea.
     </p>
   </section>
 
   <section class="reveal pipeline-block">
-    <p class="label slate">The hypothesis</p>
+    <p class="label slate">The Hypothesis</p>
     <hr class="rule">
     <p class="pipeline-desc">
-      People often know why they love a song. Most recommendation systems never ask &mdash; they infer taste from
-      listening behavior or acoustic similarity instead. Large language models make it possible to have a short
-      conversation before recommending anything at all. This prototype tests whether that conversation produces
-      an understanding of a listener's taste that the listener actually recognizes as their own.
+      People often know why they love a song, but lots of recommendation systems infer taste without asking listeners
+      to explain those reasons. Instead, they define similarity through behavioral patterns and statistical relationships.
+      Large language models can engage in a short conversation before recommending anything. This prototype tests whether
+      that conversation produces an understanding of taste that the listener recognizes as their own. 
     </p>
   </section>
 
   <section class="reveal pipeline-block">
-    <p class="label slate">The prototype</p>
+    <p class="label slate">The Prototype</p>
     <hr class="rule">
     <p class="pipeline-desc">
-      A three-screen interaction: pick a song, answer a short adaptive interview (three to six questions, each one
-      generated from what was just said rather than a fixed form), then confirm or edit an AI-written "understanding
+      A three-screen conversation: pick a song, answer a short adaptive sequence of questions (three to six questions, 
+      each generated from what was just said rather than a fixed form), then confirm or edit an AI-written "understanding
       statement" before any recommendation is generated. Recommendations are produced only from the confirmed
-      statement, each tied explicitly to the part of it they match.
+      statement, and each recommendation is tied explicitly to the reason the listener gave for liking the original song.
     </p>
 
     <details class="dashboard-toggle">
@@ -87,27 +87,31 @@
     <details class="breakdown">
       <summary>Read full breakdown</summary>
       <div class="card">
-        <p><strong>The problem:</strong> existing recommendation systems begin with the song, not the listener &mdash;
-        collaborative filtering infers taste from behavioral patterns across many users, content-based filtering
-        infers it from measurable audio properties. Neither asks a listener to explain themselves, and neither can
-        represent a reason a listener would recognize as their own.</p>
-        <p><strong>What I built:</strong> a conversational interaction model. The system opens with one fixed
-        question, then generates every subsequent question live from the conversation so far, deciding for itself
-        when it has enough to proceed (between three and six questions). It then writes a short understanding
-        statement in its own words, which the listener can edit freely before confirming &mdash; recommendations are
-        generated only from whatever text is confirmed, never from the AI's first draft directly.</p>
-        <p><strong>What changed along the way:</strong> the project originally became an increasingly detailed
-        ontology of musical taste &mdash; ten to twelve dimensions, evidence-grounded concepts, confidence scores,
-        an ontology-refinement tool. That work surfaced real methodological insight, but it was answering a
-        different question than the one this project started with: not "can taste be represented richly?" but
-        "does asking a listener help a system understand them better than assuming does?" The ontology was never
-        actually tested against that question, because every version of it was single-shot &mdash; one description
-        in, one interpretation out. This conversational redesign is the first version that actually tests it.</p>
-        <p><strong>What I learned:</strong> the clearest signal this design produces is how much a listener has to
-        edit the AI's understanding statement before confirming it. Heavy edits mean the conversation didn't work;
-        light edits mean it did. That's a simpler, more honest measure of success than anything the ontology work
-        produced, and it fell directly out of choosing this interaction pattern rather than out of any additional
-        engineering.</p>
+        <p><strong>The Problem:</strong> Existing recommendation systems begin with the song, not the listener.
+        Many recommendations will use either collaborative filtering, which infers taste from behavioral 
+        patterns across many users, and content-based filtering, inferring taste from measurable audio properties. 
+        These appraoches are effective at prediction, but neither recommendation system asks a listener to explain 
+        themselves, and neither is designed to capture the subjective explanation or reason a listener would particularly 
+        like a song.</p>
+        <p><strong>What I Built:</strong> A conversational interaction model. The system opens with one fixed
+        question, then generates every subsequent question live from the conversation, determining when it has
+        enough information to proceed (between three and six questions). It then writes a short understanding
+        statement in its own words, which the listener can edit freely before confirming. Recommendations are
+        generated only from whatever text is confirmed, never from the AI's first draft directly. The goal is not to
+        extract every possible dimension of taste, but to reach a sufficient understanding with minimal user effort. </p>
+        <p><strong>Project Evolution:</strong> The project originally became an increasingly detailed
+        framework for representing musical taste. It had evidence-grounded concepts, an ontology-refinement tool, and confidence scores.
+        This work surfaced real methodological insight, but it was answering a different question than the one this project 
+        started with: not "can taste be represented richly?" but "does asking a listener help a system understand them better 
+        than assuming does?" The ontology was never actually tested against that question, because every version of it was single-shot
+        &mdash; one description in and one interpretation out. This conversational redesign is the first version that actually tests 
+        the original hypothesis</p>
+        <p><strong>What I Learned:</strong> The clearest signal this design produces is how much a listener has to
+        edit the AI's understanding statement before confirming it. The amount and type of editing became a signal of 
+        whether the system understood the listener's intended meaning. Small corrections suggest alignment, while fundamental
+        rewrites reveal where the system misunderstood the listener. That's a simpler, more honest measure of success than 
+        anything the ontology work produced, and it fell directly out of choosing this interaction pattern rather than out of 
+        any additional engineering.</p>
       </div>
     </details>
   </section>
@@ -116,9 +120,9 @@
     <p class="label slate">What this project taught me</p>
     <hr class="rule">
     <div class="tags" style="font-size:13px; line-height:2;">
-      qualitative coding &middot; conversational AI design &middot; human-in-the-loop confirmation &middot;
-      recommendation system paradigms &middot; research question discipline &middot; knowing when to abandon
-      work that answers the wrong question
+      qualitative coding & research methods &middot; conversational AI design &middot; AI interaction design &middot; human-in-the-loop confirmation &middot;
+      recommendation system paradigms &middot; research question discipline &middot; knowing when to redirect
+      work that answers a different question
     </div>
   </section>
 
