@@ -257,11 +257,21 @@ confirmBtn.addEventListener('click', async () => {
         max_tokens: 700,
         messages: [{
           role: "user",
-          content: `A listener confirmed this understanding of why they connect with "${songTitle}" by ${songArtist}:
+      content: `A listener confirmed this understanding of why they connect with "${songTitle}" by ${songArtist}:
 
 "${finalUnderstanding}"
 
-Suggest 5 real songs that share these specific qualities. Base this only on the confirmed understanding above — do not invent anything beyond it. Infer the general genre/stylistic register of "${songTitle}" by ${songArtist} and only recommend within a broadly similar genre or stylistic family, unless the understanding itself points to a specific cross-genre element. For each suggestion, name a real song and artist, and explain in one sentence which specific part of the understanding it connects to.
+Do not treat this as a list of separate tags or keywords to match individually. It is a human explanation of a musical experience — read it the way a friend with great taste would, listening for the overall feeling being described, not just the specific words used.
+
+First, form a holistic sense of the musical experience being described: the emotional journey, the production style, sonic character, aesthetic world, the mood as a whole, any cinematic or cultural feeling the listener is pointing toward. Do not reduce it to a checklist of adjectives.
+
+Then suggest 5 real songs that would recreate that same overall experience for this listener, even if they don't share the same individual descriptors as the understanding statement. A song that captures the full feeling matters more than a song that happens to share one or two words from it. Do not select a suggestion primarily because it matches an isolated word like "warm" or "dreamy" in isolation — the match has to be to the experience as a whole.
+
+Infer the general genre/stylistic register of "${songTitle}" by ${songArtist} and stay within a broadly similar genre or stylistic family, unless the understanding itself clearly points to a cross-genre element. Base every suggestion only on the confirmed understanding above — do not invent anything beyond it.
+
+For each suggestion, name a real song and artist, and explain in one or two sentences how it recreates the overall experience described — not which individual words it happens to match.
+
+Return ONLY a JSON array: [{"title": "...", "artist": "...", "reason": "..."}]`
 
 Return ONLY a JSON array: [{"title": "...", "artist": "...", "reason": "..."}]`
         }]
