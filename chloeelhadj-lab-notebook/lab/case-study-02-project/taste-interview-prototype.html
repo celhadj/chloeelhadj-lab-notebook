@@ -164,7 +164,7 @@ answerBtn.addEventListener('click', async () => {
 
   try {
     const transcriptText = transcript.map(m => `${m.role === 'ai' ? 'Interviewer' : 'Listener'}: ${m.text}`).join('\n');
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
+    const response = await fetch("/api/claude", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -216,7 +216,7 @@ async function moveToUnderstanding() {
   understandingText.value = 'Writing understanding statement...';
 
   try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
+    const response = await fetch("/api/claude", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -249,7 +249,7 @@ confirmBtn.addEventListener('click', async () => {
   recosEl.innerHTML = '';
 
   try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
+    const response = await fetch("/api/claude", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
