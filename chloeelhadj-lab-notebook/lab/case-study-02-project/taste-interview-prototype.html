@@ -261,15 +261,17 @@ confirmBtn.addEventListener('click', async () => {
 
 "${finalUnderstanding}"
 
-Do not treat this as a list of separate tags or keywords to match individually. It is a human explanation of a musical experience — read it the way a friend with great taste would, listening for the overall feeling being described, not just the specific words used.
+Do not treat the understanding statement as a list of keywords or tags. It is a person's explanation of why a song matters to them.
 
-First, form a holistic sense of the musical experience being described: the emotional journey, the production style, sonic character, aesthetic world, the mood as a whole, any cinematic or cultural feeling the listener is pointing toward. Do not reduce it to a checklist of adjectives.
+First, infer the overall musical experience the listener is describing. Consider the emotional journey, production style, sonic character, aesthetic world, and any cinematic or cultural feeling they are pointing toward. Focus on the experience as a whole rather than individual descriptors.
 
-Then suggest 5 real songs that would recreate that same overall experience for this listener, even if they don't share the same individual descriptors as the understanding statement. A song that captures the full feeling matters more than a song that happens to share one or two words from it. Do not select a suggestion primarily because it matches an isolated word like "warm" or "dreamy" in isolation — the match has to be to the experience as a whole.
+Then recommend 5 real songs that recreate that same overall experience. Think like a knowledgeable music fan recommending songs to a friend, not a search engine matching words.
 
-Infer the general genre/stylistic register of "${songTitle}" by ${songArtist} and stay within a broadly similar genre or stylistic family, unless the understanding itself clearly points to a cross-genre element. Base every suggestion only on the confirmed understanding above — do not invent anything beyond it.
+Stay within the same musical ecosystem and stylistic community as the original song unless the listener's explanation clearly suggests otherwise. Favor culturally and stylistically authentic recommendations over obvious or globally popular choices.
 
-For each suggestion, name a real song and artist, and explain in one or two sentences how it recreates the overall experience described — not which individual words it happens to match.
+Base every recommendation only on the confirmed understanding above. Do not invent preferences that were never expressed.
+
+For each recommendation, provide the song title, artist, and a brief explanation of how it recreates the listener's overall musical experience—not simply which words or concepts it shares.
 
 Return ONLY a JSON array: [{"title": "...", "artist": "...", "reason": "..."}]`
         }]
