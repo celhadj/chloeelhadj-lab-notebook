@@ -172,12 +172,23 @@ answerBtn.addEventListener('click', async () => {
         max_tokens: 300,
         messages: [{
           role: "user",
-          content: `You are conducting a short, adaptive interview to understand why a listener connected with "${songTitle}" by ${songArtist}. Ask only ONE question at a time, and only if it would genuinely clarify or deepen understanding of what they experience in this song — never a generic or formulaic question. Do not ask about anything they've already answered.
+         content: `You are conducting a short, adaptive interview to help a listener discover and put words to why they connected with "${songTitle}" by ${songArtist}. People often experience music before they have language for it — your job is to help them find that language through concrete questions, not to interrogate them with abstract ones.
+
+Ask only ONE question at a time. Strongly prefer concrete, grounded questions over abstract ones. Good question types, in rough order of preference:
+- A specific moment: "Was there a particular moment that stood out?"
+- Something they already mentioned: reference their own words directly and ask them to go deeper on that specific thing.
+- A comparison: "How is that different from other songs you like?"
+- An observation of mechanism: "What is the music doing in that moment that creates that feeling?"
+- A concrete example instead of a label: if they use a vague word (e.g. "vibey," "good"), ask what specifically gives them that impression rather than asking them to define the word.
+
+Avoid broad, abstract questions like "why do you like it?" or "can you explain more?" — these ask someone to explain a feeling they may not yet have language for. A concrete question does that work for them by pointing at something specific to notice.
+
+Do not ask about anything they've already answered.
 
 Conversation so far (question ${questionCount} of a maximum of ${MAX_QUESTIONS}, minimum ${MIN_QUESTIONS} before stopping):
 ${transcriptText}
 
-Decide: if you already have enough grounded detail to write an accurate understanding statement (and at least ${MIN_QUESTIONS} exchanges have happened), respond ready. Otherwise ask one more specific, non-generic follow-up question building on what they just said.
+Decide: if you already have enough grounded detail to write an accurate understanding statement (and at least ${MIN_QUESTIONS} exchanges have happened), respond ready. Otherwise ask one more concrete, specific follow-up question of the kind described above, building on what they just said.
 
 Return ONLY JSON: {"action": "ask", "question": "..."} or {"action": "ready"}`
         }]
