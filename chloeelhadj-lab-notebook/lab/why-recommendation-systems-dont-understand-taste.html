@@ -51,7 +51,7 @@
     <p class="lede" style="margin-top:20px;">
       Recommendation systems can predict what you are likely to listen to, or identify patterns in what you enjoy listening to,
       but they rarely ask why you actually love something. This project investigates whether a short conversation, asking a listener
-      what draws them to a song, rather than assuming their taste from behavior features alone, can produce recommendations that feel
+      what draws them to a song, rather than assuming their taste from listening behavior alone, can produce recommendations that feel
       more personally meaningful and accurate. The prototype below is the current test of that idea.
     </p>
   </section>
@@ -60,10 +60,11 @@
     <p class="label slate">The Hypothesis</p>
     <hr class="rule">
     <p class="pipeline-desc">
-      People often know why they love a song, but lots of recommendation systems infer taste without asking listeners
-      to explain those reasons. Instead, they define similarity through behavioral patterns and statistical relationships.
-      Large language models can engage in a short conversation before recommending anything. This prototype tests whether
-      that conversation produces an understanding of taste that the listener recognizes as their own. 
+      People often know why they love a song, even if they don't immediately have the words to explain it, but lots of 
+      recommendation systems infer taste without asking listeners to explain those reasons. Instead, they define similarity 
+      through behavioral patterns and statistical relationships. Large language models can engage in a short conversation 
+      before recommending anything. This prototype tests whether that conversation produces an understanding of taste that 
+      the listener recognizes as their own. 
     </p>
   </section>
 
@@ -76,7 +77,7 @@
       statement" before any recommendation is generated. Recommendations are produced only from the confirmed
       statement, and each recommendation is tied explicitly to the reason the listener gave for liking the original song.
       The prototype does not try to find songs that are most similar to the original. Instead, it tries to find songs that 
-      satisfy the listener's own reason for loving the original, while remaining within a believable musical context.
+      reflect the listener's own reason for loving the original, while remaining within a believable musical context.
     </p>
 
     <details class="dashboard-toggle">
@@ -108,7 +109,7 @@
         than assuming does?" The ontology was never actually tested against that question, because every version of it was single-shot
         &mdash; one description in and one interpretation out. This conversational redesign is the first version that actually tests 
         the original hypothesis</p>
-        <p><strong>What I Learned:</strong> The clearest signal this design produces is how much a listener has to
+        <p><strong>What I Learned:</strong> One of the clearest signals this design produces is how much a listener has to
         edit the AI's understanding statement before confirming it. The amount and type of editing became a signal of 
         whether the system understood the listener's intended meaning. Small corrections suggest alignment, while fundamental
         rewrites reveal where the system misunderstood the listener. That's a simpler, more honest measure of success than 
