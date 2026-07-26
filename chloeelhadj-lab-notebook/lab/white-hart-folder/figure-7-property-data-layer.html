@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Figure 7 — Property Data Layer</title>
+<style>
+:root{--ink:#1A1A1A;--bone:#FFF;--dim:#F6F6F4;--slate:#6B6B68;--navy:#3D5A80;--maroon:#6E2A34;--line:rgba(0,0,0,.1)}
+*{box-sizing:border-box}body{margin:0;background:var(--bone);color:var(--ink);font-family:'Inter',sans-serif;padding:60px 24px 100px}
+.wrap{max-width:900px;margin:0 auto}.fig-label{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--maroon);margin-bottom:8px}
+h1{font-family:'Times New Roman',serif;font-weight:400;font-size:27px;margin:0 0 8px}.sub{color:var(--slate);font-size:15px;margin-bottom:12px}
+.disc{font-size:12.5px;color:var(--maroon);font-style:italic;border-left:2px solid var(--maroon);padding-left:14px;margin:16px 0 28px;max-width:660px}
+.ground{font-size:13px;color:var(--slate);background:var(--dim);border-radius:6px;padding:14px 18px;margin-bottom:36px;max-width:660px}
+.ground b{color:var(--ink)}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+.panel{border:1px solid var(--line);border-radius:6px;padding:16px 18px;background:var(--dim)}
+.pt{font-family:'Times New Roman',serif;font-size:16px;margin-bottom:8px}.pi{font-size:13px;padding:4px 0;border-top:1px solid var(--line)}
+.pi:first-of-type{border-top:none}.pa{margin-top:10px;padding-top:8px;border-top:1px dashed var(--line);font-size:10.5px;color:var(--navy);font-style:italic}
+.cap{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);font-size:13.5px;color:var(--slate);font-style:italic;line-height:1.7}
+</style></head><body><div class="wrap">
+<p class="fig-label">Figure 7</p>
+<h1>The White Hart — Property Data Layer</h1>
+<p class="sub">The consolidated, technical view a system like Stag would provide — every source, one place.</p>
+<p class="disc">Conceptual mockup only. Figures are illustrative, not real operational data.</p>
+<p class="ground"><b>How this differs from Figure 6:</b> the Morning View is what a person opens each day. This is the underlying data layer beneath it — every system (PMS, maintenance log, POS, staff notes) consolidated in one place, which the Morning View is one curated read of. This is also where Figure 9's captured notes surface once submitted.</p>
+
+<div class="grid">
+<div class="panel"><div class="pt">Systems Consolidated</div>
+<div class="pi">Reservations / PMS</div><div class="pi">Maintenance log</div><div class="pi">Point-of-sale (Tap Room, Restaurant, Provisions)</div><div class="pi">Staff notes (Figure 9 submissions)</div>
+<div class="pa">Addresses: information scattered across multiple systems</div></div>
+
+<div class="panel"><div class="pt">Occupancy &amp; Revenue Snapshot</div>
+<div class="pi">Inn + Cottage — 82% occupied tonight</div><div class="pi">Restaurant — 68% of dinner covers booked</div>
+<div class="pa">Addresses: financial/occupancy data arriving separately from on-site activity</div></div>
+
+<div class="panel"><div class="pt">Maintenance Log (All Open Tickets)</div>
+<div class="pi">Room 4 — heating, 3rd report this season</div><div class="pi">Cottage — flagged during cleaning, awaiting follow-up</div>
+<div class="pa">Addresses: maintenance history difficult to retrieve</div></div>
+
+<div class="panel"><div class="pt">Institutional Knowledge Feed</div>
+<div class="pi">Room 4 heating — recurring, likely needs permanent fix, not another patch</div><div class="pi">Guest in Room 2 — prefers quiet room, away from Tap Room</div>
+<div class="pa">Addresses: knowledge that otherwise only lives in one person's memory — fed directly from Figure 9</div></div>
+</div>
+
+<p class="cap">Figure 6 is the daily-use surface. Figure 7 is what sits underneath it — the consolidated technical layer Stag-type platforms are built to provide, and the place Figure 9's notes actually land once submitted.</p>
+</div></body></html>
