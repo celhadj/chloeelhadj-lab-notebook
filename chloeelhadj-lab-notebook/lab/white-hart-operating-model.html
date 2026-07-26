@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The White Hart Operating Model</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+  .fr{border:none;overflow:hidden;margin:14px 0;}
+  .fr iframe{display:block;width:100%;border:none;background:#FFF;}
+  section{margin-bottom:56px;}
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="nav-inner">
+    <a href="../index.html" class="brand">Lab notebook</a>
+    <button class="nav-toggle" aria-label="Toggle menu">Menu</button>
+    <nav class="links"><a href="../index.html">Home</a><a href="../lab.html" class="active">Lab</a><a href="../about.html">About</a></nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="reveal">
+    <p class="label">Case Study &middot; Jul 2026</p>
+    <h1>The White Hart Operating Model</h1>
+    <p class="lede" style="margin-top:20px;">Boutique hotels create value by transforming information into coordinated human decisions. This project explores how organizational knowledge can be modeled before introducing AI.</p>
+  </section>
+
+  <section class="reveal">
+    <p class="label slate">Overview</p><hr class="rule">
+    <p>A consulting-style investigation of the White Hart, a boutique inn in Salisbury, Connecticut. The objective isn't to build an AI product first — it's to understand how the hotel operates as an information system before proposing where AI could help.</p>
+  </section>
+
+  <section class="reveal">
+    <p class="label slate">Research Question</p><hr class="rule">
+    <p style="font-family:'Times New Roman',serif;font-style:italic;font-size:19px;">How does information move through a boutique hotel, where does it break down, and how can an AI-powered knowledge layer improve coordination without replacing human judgment?</p>
+  </section>
+
+  <section class="reveal">
+    <p class="label slate">Method</p><hr class="rule">
+    <p>The order was consulting, not software development: understand the system, map information, observe workflows, identify friction, identify institutional knowledge — only then propose AI. This case study was built iteratively with Claude: real observations and workflow detail came first, each figure was built only once that evidence existed, and design principles were made explicit before any prototype was designed around them.</p>
+  </section>
+
+  <section class="reveal">
+    <div class="fr"><iframe src="white-hart/figure-0-white-hart-property-overview.html" height="700" loading="lazy"></iframe></div>
+  </section>
+  <section class="reveal">
+    <div class="fr"><iframe src="white-hart/figure-1-white-hart-operating-model.html" height="1100" loading="lazy"></iframe></div>
+  </section>
+  <section class="reveal">
+    <div class="fr"><iframe src="white-hart/figure-2.0-design-principles.html" height="600" loading="lazy"></iframe></div>
+  </section>
+
+  <section class="reveal">
+    <p class="label slate">From Model to Practice</p><hr class="rule">
+    <p>The operating model above is abstract by design. What follows makes it concrete: a daily-use dashboard, the technical layer beneath it, one ticket traced through the whole system, a capture tool for informal knowledge, and the closing image of what organizational memory actually looks like.</p>
+  </section>
+
+  <section class="reveal"><div class="fr"><iframe src="white-hart/figure-6-prototype-morning-view.html" height="1000" loading="lazy"></iframe></div></section>
+  <section class="reveal"><div class="fr"><iframe src="white-hart/figure-7-property-data-layer.html" height="900" loading="lazy"></iframe></div></section>
+  <section class="reveal"><div class="fr"><iframe src="white-hart/figure-8-one-ticket-through-the-system.html" height="1400" loading="lazy"></iframe></div></section>
+  <section class="reveal"><div class="fr"><iframe src="white-hart/figure-9-daily-operations-interpreter.html" height="800" loading="lazy"></iframe></div></section>
+  <section class="reveal"><div class="fr"><iframe src="white-hart/figure-10-organizational-memory.html" height="700" loading="lazy"></iframe></div></section>
+
+  <section class="reveal">
+    <p class="label slate">Key Insights</p><hr class="rule">
+    <div class="tags" style="font-size:13px;line-height:2;">The front desk is the hotel's real coordination hub &middot; most friction is a handoff problem, not a technology gap &middot; institutional knowledge is the true differentiator &middot; AI's role is retrieval, not decision-making &middot; the dashboard is one visualization of the operating model, not the project itself</div>
+  </section>
+
+  <section class="reveal">
+    <p class="label slate">Limitations</p><hr class="rule">
+    <p>This is a conceptual model built from personal observation during one internship at one property — not verified against the White Hart's actual systems or confirmed with management. Two of three core workflows still need more concrete detail before they can be built honestly. Illustrative data throughout is invented to show the shape of ideas, not real records.</p>
+  </section>
+
+  <section class="reveal">
+    <p class="label slate">Reflection</p><hr class="rule">
+    <p>Boutique hospitality depends on coordinated human intelligence. Technology's role here isn't to replace that — it's to preserve and strengthen it.</p>
+  </section>
+
+</main>
+
+<footer class="site"><div class="wrap">&copy; 2026 Chloe El Hadj &mdash; <a href="../index.html">home</a> &middot; <a href="../lab.html">lab index</a></div></footer>
+<script src="../script.js"></script>
+</body>
+</html>
